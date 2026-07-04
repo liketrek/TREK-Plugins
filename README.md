@@ -77,8 +77,10 @@ over the network, so you can see a green result before you open the PR.
 
 ## Plugin ids
 
-Any `id` is fine — nothing is reserved. Pick a short, descriptive slug; it just
-has to be unique in the registry and match your entry's filename. On first
+Any `id` is fine **except `registry`, `install` and `rescan`** (they collide with
+admin API route segments and the install loader refuses them). Pick a short,
+descriptive slug; it just has to be unique in the registry and match your entry's
+filename. On first
 registration an `id` is bound to its GitHub owner ([`OWNERS.json`](./OWNERS.json))
 so nobody else can repoint your plugin to a different repo later; changing the
 owner needs a maintainer override.
