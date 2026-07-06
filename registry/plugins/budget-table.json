@@ -16,7 +16,8 @@
       "size": 24141,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-07-06T00:05:35.905Z"
+      "publishedAt": "2026-07-06T00:05:35.905Z",
+      "requiredAddons": ["budget"]
     }
   ]
 }
