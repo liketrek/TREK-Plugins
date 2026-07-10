@@ -1,0 +1,23 @@
+{
+  "id": "wiki-place-context",
+  "name": "Wikipedia Place Context",
+  "author": "self-hosted",
+  "description": "Shows nearby Wikipedia articles right inside a place's detail view. Search once to link a location, then it's remembered for that place.",
+  "repo": "raduwolf12/wiki-place-context",
+  "type": "widget",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "gitTag": "v1.0.0",
+      "commitSha": "900bda7ffdf8da38bac9da4f7112fd108fec63a1",
+      "downloadUrl": "https://github.com/raduwolf12/wiki-place-context/releases/download/v1.0.0/plugin.zip",
+      "sha256": "c92e514dc5a6274680547282abed58c0aeb85bfc6a56c7394aa93ad254aadad7",
+      "minTrekVersion": "3.2.0",
+      "size": 13962,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-07-08T19:23:03.644Z"
+    }
+  ],
+  "homepage": "https://github.com/raduwolf12/wiki-place-context"
+}
