@@ -61,11 +61,37 @@ and [Publishing a Plugin](https://github.com/mauriceboe/TREK/wiki/Plugin-Publish
 **Entry** (`scripts/validate-entry.mjs`): JSON schema · `id` matches filename and
 is a valid slug · **owner/repo binding** (an existing plugin id can't be repointed
 to a different owner) · homoglyph / mixed-script names blocked · release tag exists ·
-manifest parity (`id`/`version`/`type`/`apiVersion`/`operatorEgress`/`requiredAddons`/
-`pluginDependencies` match) · **SHA-256 of the downloaded artifact matches the pin** ·
-**the author signature verifies** (see below) · **no native `.node` binaries** (forbidden
-in v1) · `egress[]` present and non-wildcard when `http:outbound` is declared (an empty
-`egress[]` is allowed only with `operatorEgress: true` — see below).
+manifest parity (`id`/`version`/`type`/`apiVersion`/`trek`/`operatorEgress`/`requiredAddons`/
+`pluginDependencies` match) · **the TREK version range** (see below) · **SHA-256 of the
+downloaded artifact matches the pin** · **the author signature verifies** (see below) ·
+**no native `.node` binaries** (forbidden in v1) · `egress[]` present and non-wildcard when
+`http:outbound` is declared (an empty `egress[]` is allowed only with `operatorEgress: true`
+— see below).
+
+### TREK version compatibility
+
+Your manifest's **`trek`** field is the semver **range** of TREK versions your plugin
+supports (`">=3.2.0 <4.0.0"`). Since TREK 3.3.1 it is **load-bearing, not advisory**: TREK
+refuses to install a plugin whose range excludes the running version, and refuses to
+*activate* one it has since outgrown — so a plugin that ships without a range, or with the
+wrong one, is simply uninstallable.
+
+CI therefore requires it on the version you are publishing, and pins it to the truth:
+
+- the manifest must declare a **satisfiable** range (`">=4.0.0 <3.0.0"` is valid semver and
+  satisfiable by nothing — it is rejected);
+- the entry's `trek` must equal the manifest's, verbatim.
+
+`trek-plugin entry` fills it in for you; don't write it by hand.
+
+**`trek` is the only compatibility field a new entry needs.** `minTrekVersion` and
+`maxTrekVersion` are the older shape and are **deprecated** — the first said nothing the
+range doesn't already say, and neither can express the exclusive upper bound that is the
+whole point of `<4.0.0`. Don't set them. They are still accepted (and CI checks a floor,
+if present, agrees with the range) so that entries published before `trek` existed keep
+validating, and so a TREK predating `trek` still has something to read. Versions published
+before the field existed are likewise grandfathered: CI won't demand a range from a commit
+that predates it.
 
 ### Signing
 

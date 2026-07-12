@@ -16,6 +16,7 @@ import { writeFileSync, readFileSync, mkdtempSync, rmSync, mkdirSync } from 'nod
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { satisfiableRange, trekFloor } from './lib/trek-range.mjs'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -41,6 +42,7 @@ const baseEntry = () => ({
       sha256: 'b'.repeat(64),
       size: 1024,
       apiVersion: 1,
+      trek: '>=3.3.0 <4.0.0',
       minTrekVersion: '3.3.0',
       nativeModules: false,
       signature: SIG,
@@ -190,6 +192,57 @@ expect('a well-formed signed entry passes', runGate(baseEntry()), true)
     runGate(hijack(), { overrides: { ALLOW_OWNER_CHANGE: '1' } }),
     true,
   )
+}
+
+// --- the TREK host-version range ---
+//
+// TREK gates installs AND activation on the manifest's `trek` range, so an entry that
+// carries the wrong one (or none) merges green and is then uninstallable. The parity check
+// itself needs the author's manifest and so only runs networked; what CAN be pinned offline
+// is that the schema admits the field at all — it is `additionalProperties: false`, so before
+// `trek` was added to it EVERY entry the current SDK builds was a hard schema failure.
+{
+  const e = baseEntry()
+  expect('an entry carrying a trek range passes the schema', runGate(e), true)
+
+  const noTrek = baseEntry()
+  delete noTrek.versions[0].trek
+  expect('an entry WITHOUT a trek range still passes (published before the field existed)', runGate(noTrek), true)
+
+  // `trek` supersedes minTrekVersion, so a new entry simply omits the floor. It was required
+  // until 3.3.1, which meant a new plugin had to restate — in a weaker form — a fact its range
+  // already carried.
+  const noFloor = baseEntry()
+  delete noFloor.versions[0].minTrekVersion
+  expect('an entry with a trek range and NO minTrekVersion passes', runGate(noFloor), true)
+
+  const nullFloor = baseEntry()
+  nullFloor.versions[0].minTrekVersion = null
+  expect('an explicit null minTrekVersion passes', runGate(nullFloor), true)
+
+  const junk = baseEntry()
+  junk.versions[0].notAField = 'x'
+  expect('an unknown version field is still rejected', runGate(junk), false, 'must NOT have additional properties')
+}
+
+// The floor an entry advertises is derived from the range, never hand-written — and reading
+// it off the text instead of the range is how "<4.0.0" came to publish a MINIMUM of 4.0.0,
+// the exact inverse of what the plugin supports.
+{
+  const cases = [
+    ['>=3.2.0 <4.0.0', '3.2.0'],
+    ['^3.2.0', '3.2.0'],
+    ['>=3', '3.0.0'],
+    ['<4.0.0', '0.0.0'],
+    ['>=4.0.0 <3.0.0', null], // valid syntax, satisfiable by nothing
+    ['latest', null],
+    ['3.2+', null],
+    ['', null],
+  ]
+  for (const [range, want] of cases) {
+    expect(`trekFloor(${JSON.stringify(range)}) === ${JSON.stringify(want)}`, { ok: trekFloor(range) === want, out: String(trekFloor(range)) }, true)
+  }
+  expect('satisfiableRange rejects an empty range', { ok: !satisfiableRange('>=4.0.0 <3.0.0'), out: '' }, true)
 }
 
 console.log(results.join('\n'))

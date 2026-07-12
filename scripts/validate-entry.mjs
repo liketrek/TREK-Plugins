@@ -21,6 +21,7 @@ import path from 'node:path'
 import Ajv2020 from 'ajv/dist/2020.js'
 import addFormats from 'ajv-formats'
 import { verifyAuthorSignature, checkSignatureShape, SignatureError } from './lib/verify-signature.mjs'
+import { satisfiableRange, trekFloor } from './lib/trek-range.mjs'
 
 const pexec = promisify(execFile)
 const entryPath = process.argv[2]
@@ -79,8 +80,8 @@ for (const p of checkSignatureShape(entry)) bad(p)
 // Compare against the entry as it exists on the PR base. `git show` fails for a
 // brand-new plugin (no previous entry) — that's the opt-in case, and it's fine.
 const baseSha = process.env.BASE_SHA
+let previous = null
 if (baseSha) {
-  let previous = null
   try {
     // Resolve against the repo the ENTRY lives in, not the one this script lives in — they
     // are the same in CI, but tying the lookup to the entry keeps the guard testable.
@@ -92,7 +93,24 @@ if (baseSha) {
   } catch {
     previous = null // new plugin, or unreadable base — nothing to downgrade from
   }
+}
 
+/**
+ * Is this the version the PR is PUBLISHING (as opposed to one already on the registry)?
+ *
+ * It matters because rules that are new can only be applied to new versions: an entry file
+ * carries every version ever published, and their manifests sit at commits that predate the
+ * rule. Demanding a `trek` range from all of them would make a routine "add v2.0.0" PR fail
+ * on v1.0.0's two-year-old commit, which the author cannot now change.
+ *
+ * With a PR base we know exactly which versions are new. Without one (a local run), fall back
+ * to the newest — versions are newest-first by convention, and it is what validate.yml already
+ * treats as "the version being published" when it grades the README.
+ */
+const publishedBefore = new Set((previous?.versions ?? []).map((v) => v.version))
+const isNewlyPublished = (v) => (previous ? !publishedBefore.has(v.version) : v === entry.versions?.[0])
+
+if (baseSha) {
   if (previous?.authorPublicKey) {
     if (!entry.authorPublicKey) {
       bad(`"${entry.id}" was published signed but this entry drops authorPublicKey — TREK refuses an unsigned update to a signed plugin, which would break every existing install`)
@@ -143,6 +161,44 @@ if (process.env.SKIP_NETWORK !== '1' && entry.repo && Array.isArray(entry.versio
         const mApiVersion = m.apiVersion ?? 1
         if (mApiVersion !== v.apiVersion) bad(`${v.version}: manifest apiVersion ${mApiVersion} != entry ${v.apiVersion}`)
         if (m.nativeModules === true) bad(`${v.version}: manifest declares nativeModules:true — native modules are forbidden in v1`)
+
+        // TREK host-version range. TREK gates installs AND activation on this: a plugin whose
+        // manifest declares no satisfiable range cannot be installed at all, and one whose range
+        // excludes the running TREK is refused. So an entry that lies about it — or omits it —
+        // merges green here and is then uninstallable on every instance.
+        //
+        // Required only on the version being published (see isNewlyPublished): the older versions
+        // in this file point at commits whose manifests predate the field.
+        const mTrek = typeof m.trek === 'string' ? m.trek.trim() : ''
+        const mTrekOk = satisfiableRange(mTrek)
+        const isNew = isNewlyPublished(v)
+
+        if (isNew && !mTrekOk) {
+          bad(
+            mTrek
+              ? `${v.version}: manifest "trek" is not a satisfiable semver range: "${mTrek}" — TREK will refuse to install this plugin`
+              : `${v.version}: manifest declares no "trek" version range — TREK will refuse to install this plugin. Add e.g. "trek": ">=3.2.0 <4.0.0"`,
+          )
+        }
+        if (v.trek && !mTrekOk) {
+          bad(`${v.version}: entry declares trek "${v.trek}" but the manifest at ${v.commitSha.slice(0, 8)} declares no usable range`)
+        }
+        // Parity + an honest floor — but only for the version being published, or an older one
+        // whose entry block already carries the field. An older version that predates `trek` in
+        // the ENTRY is grandfathered: its manifest may well declare a range (the SDK has always
+        // required one to build an entry), and re-deriving it now would fail a routine
+        // "add v2.0.0" PR on a v1.0.0 block nobody is touching.
+        if (mTrekOk && (isNew || v.trek !== undefined)) {
+          if (v.trek !== mTrek) bad(`${v.version}: manifest trek "${mTrek}" != entry trek "${v.trek ?? '(absent)'}"`)
+          // minTrekVersion is DEPRECATED: `trek` says the same thing and more, so a new entry
+          // simply omits it. It is only checked when present — an entry that still carries one
+          // (every entry published before `trek` existed) must not disagree with its own range,
+          // because a TREK too old to read `trek` gates on the floor and nothing else.
+          const floor = trekFloor(mTrek)
+          if (v.minTrekVersion != null && v.minTrekVersion !== floor) {
+            bad(`${v.version}: entry minTrekVersion "${v.minTrekVersion}" != the lower bound of trek "${mTrek}" (${floor}) — they must agree, or drop minTrekVersion (deprecated; \`trek\` supersedes it)`)
+          }
+        }
         // egress presence when http:outbound declared. An empty egress[] is legal ONLY
         // for an operatorEgress plugin, whose hosts an admin supplies after install.
         const perms = Array.isArray(m.permissions) ? m.permissions : []
