@@ -61,14 +61,41 @@ and [Publishing a Plugin](https://github.com/mauriceboe/TREK/wiki/Plugin-Publish
 **Entry** (`scripts/validate-entry.mjs`): JSON schema · `id` matches filename and
 is a valid slug · **owner/repo binding** (an existing plugin id can't be repointed
 to a different owner) · homoglyph / mixed-script names blocked · release tag exists ·
-manifest parity (`id`/`version`/`type`/`apiVersion`/`operatorEgress` match) · **SHA-256
-of the downloaded artifact matches the pin** · **no native `.node` binaries** (forbidden
+manifest parity (`id`/`version`/`type`/`apiVersion`/`operatorEgress`/`requiredAddons`/
+`pluginDependencies` match) · **SHA-256 of the downloaded artifact matches the pin** ·
+**the author signature verifies** (see below) · **no native `.node` binaries** (forbidden
 in v1) · `egress[]` present and non-wildcard when `http:outbound` is declared (an empty
 `egress[]` is allowed only with `operatorEgress: true` — see below).
 
-An author signature (`signature` + `authorPublicKey`) may be supplied and is carried in
-the index, but **CI does not verify it** — TREK pins the key on first install (TOFU) and
-checks it client-side.
+### Signing
+
+Signing is **optional**. An unsigned plugin installs on its SHA-256 pin alone, exactly as
+before — the pin proves the bytes are what the *registry* vouches for. A signature proves
+they came from the *author*, so a compromised registry cannot ship code under your name
+without also stealing your key. Sign with `npx trek-plugin-sdk publish --sign` (or `keygen`
++ `entry --sign`), which emits a per-version `signature` and the entry's `authorPublicKey`.
+
+If you supply them, **CI verifies them** — it is not merely carrying them through to the
+index:
+
+- **Shape** — a key without any signed version, or a signature without a key, is refused.
+  TREK will not install a half-signed entry (`incomplete signature: an author key and a
+  version signature must both be present`), so merging one ships an entry nobody can use.
+- **Signature** — the signature is verified against the downloaded artifact bytes with the
+  same verifier TREK uses at install (`scripts/lib/verify-signature.mjs` is a port of the
+  host's `install/verify-signature.ts`, and must stay behaviourally identical). A signature
+  CI accepts but the host would reject is an entry that bricks the update for everyone who
+  already has the plugin.
+- **No signing downgrade** — TREK pins the author key on **first install** (trust-on-first-use).
+  Once a plugin has shipped signed, an update that drops the key, drops a version's signature,
+  or is signed with a *different* key is refused on every instance that already has it. CI
+  compares against the entry on the PR base and blocks all three.
+
+Rotating a key is therefore not a routine release: every existing install stops updating
+until an admin explicitly **re-trusts** the new key in TREK's admin UI (TREK ≥ 3.3.1 shows
+both fingerprints and asks them to confirm the new one with you out of band). Rotation needs
+a maintainer override on the PR (`ALLOW_KEY_CHANGE=1`), and an owner change needs
+`ALLOW_OWNER_CHANGE=1`.
 
 ### `operatorEgress`
 
