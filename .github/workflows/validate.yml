@@ -2,6 +2,10 @@ name: Validate plugin submissions
 
 on:
   pull_request:
+    # `labeled`/`unlabeled` are here so the maintainer overrides below actually work: the
+    # default trigger types don't include them, so applying the label would leave the failed
+    # run sitting there red and a maintainer would have to push an empty commit to re-run.
+    types: [opened, synchronize, reopened, labeled, unlabeled]
     paths:
       - 'registry/plugins/**'
       # The gates themselves are load-bearing: a change to the validator, the schema or the
@@ -58,6 +62,19 @@ jobs:
           # Lets validate-entry.mjs read the previous entry (git show "$BASE_SHA:<path>")
           # to catch a signed plugin shipping an unsigned or re-keyed update.
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
+          # --- maintainer overrides ---
+          # Two gates protect existing installs rather than the submission itself, so each
+          # has a legitimate escape hatch — a real repo transfer, a genuinely rotated key.
+          #
+          # A LABEL is the mechanism precisely because a PR author cannot apply one: labelling
+          # needs triage/write permission on this repo, which a fork contributor does not have.
+          # So the override cannot be self-served, which is the whole meaning of "maintainer
+          # override". (Do NOT move these to something the PR branch controls — a file in the
+          # PR, a commit-message token — or the author overrides their own gate.)
+          #
+          # Applying the label re-runs this workflow (see `types:` above) and the gate passes.
+          ALLOW_KEY_CHANGE: ${{ contains(github.event.pull_request.labels.*.name, 'allow-key-change') && '1' || '' }}
+          ALLOW_OWNER_CHANGE: ${{ contains(github.event.pull_request.labels.*.name, 'allow-owner-change') && '1' || '' }}
         run: |
           set -e
           while IFS= read -r f; do

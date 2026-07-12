@@ -12,7 +12,7 @@
 // Usage: node scripts/selftest-gates.mjs
 
 import { execFileSync } from 'node:child_process'
-import { writeFileSync, mkdtempSync, rmSync, mkdirSync } from 'node:fs'
+import { writeFileSync, readFileSync, mkdtempSync, rmSync, mkdirSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -52,8 +52,9 @@ const baseEntry = () => ({
 let failures = 0
 const results = []
 
-/** Run the validator against `entry` written as <id>.json; returns { ok, out }. */
-function runGate(entry, { baseEntry: prev } = {}) {
+/** Run the validator against `entry` written as <id>.json; returns { ok, out }.
+ *  `overrides` sets the maintainer-override env vars the validate.yml labels supply. */
+function runGate(entry, { baseEntry: prev, overrides = {} } = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), 'trek-selftest-'))
   try {
     // The downgrade guard reads the previous entry via `git show $BASE_SHA:<path>`, so the
@@ -63,7 +64,7 @@ function runGate(entry, { baseEntry: prev } = {}) {
     const file = path.join(reg, `${entry.id}.json`)
     const git = (...a) => execFileSync('git', a, { cwd: dir, stdio: 'ignore' })
 
-    let env = { ...process.env, SKIP_NETWORK: '1' }
+    let env = { ...process.env, SKIP_NETWORK: '1', ...overrides }
     if (prev) {
       git('init', '-q')
       git('config', 'user.email', 'selftest@example.com')
@@ -155,6 +156,40 @@ expect('a well-formed signed entry passes', runGate(baseEntry()), true)
 {
   const e = baseEntry()
   expect('an entry whose manifest omits apiVersion passes (offline shape)', runGate(e), true)
+}
+
+// --- the maintainer overrides ---
+//
+// These are the ONLY way through the two gates that protect existing installs, and
+// validate.yml supplies them from the `allow-key-change` / `allow-owner-change` PR labels.
+// Pin them here: without a test, renaming an env var (or fat-fingering the label expression
+// in the workflow) silently welds the escape hatch shut, and nobody notices until a real
+// author needs to rotate a key.
+
+{
+  const prev = baseEntry()
+  const e = baseEntry()
+  e.authorPublicKey = Buffer.alloc(32, 42).toString('base64')
+  expect(
+    'a key rotation PASSES with ALLOW_KEY_CHANGE=1 (the allow-key-change label)',
+    runGate(e, { baseEntry: prev, overrides: { ALLOW_KEY_CHANGE: '1' } }),
+    true,
+  )
+}
+
+// The owner gate needs a real binding in OWNERS.json, so borrow one and repoint it at
+// somebody else — which is precisely the hijack the gate exists to stop.
+{
+  const bound = JSON.parse(readFileSync(path.join(ROOT, 'OWNERS.json'), 'utf8')).plugins
+  const [id, { boundOwner }] = Object.entries(bound)[0]
+  const hijack = () => ({ ...baseEntry(), id, repo: `not-${boundOwner}/hijacked` })
+
+  expect('repointing a bound id at a NEW owner fails', runGate(hijack()), false, 'is bound to owner')
+  expect(
+    'an owner change PASSES with ALLOW_OWNER_CHANGE=1 (the allow-owner-change label)',
+    runGate(hijack(), { overrides: { ALLOW_OWNER_CHANGE: '1' } }),
+    true,
+  )
 }
 
 console.log(results.join('\n'))

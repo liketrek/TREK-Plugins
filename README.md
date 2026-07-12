@@ -93,9 +93,30 @@ index:
 
 Rotating a key is therefore not a routine release: every existing install stops updating
 until an admin explicitly **re-trusts** the new key in TREK's admin UI (TREK ≥ 3.3.1 shows
-both fingerprints and asks them to confirm the new one with you out of band). Rotation needs
-a maintainer override on the PR (`ALLOW_KEY_CHANGE=1`), and an owner change needs
-`ALLOW_OWNER_CHANGE=1`.
+both fingerprints and asks them to confirm the new one with you out of band).
+
+### Maintainer overrides
+
+Two gates protect *existing installs* rather than the submission itself, so each has an
+escape hatch — for a real repo transfer, or a genuinely rotated key. A maintainer opens
+them by applying a **label** to the PR:
+
+| Label | Lifts | Use when |
+|---|---|---|
+| `allow-key-change` | `authorPublicKey` differs from the entry on the PR base | The author rotated their signing key, or lost it and made a new one |
+| `allow-owner-change` | The entry's repo owner differs from the `id`'s binding in [`OWNERS.json`](./OWNERS.json) | The plugin genuinely moved to a new owner or org |
+
+Applying the label re-runs the validation workflow, and the gate passes. Removing it puts
+the gate back.
+
+It is a label rather than anything in the PR itself **on purpose**: labelling requires
+triage/write permission on this repo, which a fork contributor does not have — so an author
+cannot wave their own PR through. Do not expect a magic string in a commit message or a file
+in the branch to work; a submitter controls those, which would defeat the point.
+
+The other two signing-downgrade cases — **dropping** the key, or shipping a version with no
+signature — have **no override at all**. They are not recoverable: TREK refuses those updates
+on every instance that already has the plugin, so merging one is simply a broken entry.
 
 ### `operatorEgress`
 
