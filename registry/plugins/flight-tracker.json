@@ -1,0 +1,24 @@
+{
+  "id": "flight-tracker",
+  "name": "Flight Tracker",
+  "author": "fbnlrz",
+  "description": "Live flight status, schedule and airborne position for a flight reservation, from AeroDataBox and adsb.fi.",
+  "repo": "fbnlrz/trek-track",
+  "type": "widget",
+  "versions": [
+    {
+      "version": "1.7.0",
+      "gitTag": "v1.7.0",
+      "commitSha": "d0618cfe59c110172a84d034dd3da41908597c63",
+      "downloadUrl": "https://github.com/fbnlrz/trek-track/releases/download/v1.7.0/plugin.zip",
+      "sha256": "262aa1a0b80fff34223b0797eec36557559f51b15599a41427a5b55e18e5b50e",
+      "minTrekVersion": "3.3.0",
+      "size": 78163,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-07-14T20:47:37.808Z",
+      "signature": "1bQqzEBoGcmflZexMbjTyQh7tFnshTK9wBIzEcb62jGZejyHvGsLy3L+/WmOPbKbU47ZJrc5OY9segZtsDx3Cw=="
+    }
+  ],
+  "homepage": "https://github.com/fbnlrz/trek-track",
+  "authorPublicKey": "DJDfduAyHs2Ja/xhOyMkbCAcreMZZyKuz70PqTyfYM0="
