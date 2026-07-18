@@ -128,6 +128,17 @@ expect('a well-formed signed entry passes', runGate(baseEntry()), true)
   expect('an authorPublicKey with no signed version fails', runGate(e), false, 'no version carries a signature')
 }
 
+// Even a FIRST signed publish (no base to diff against) must have EVERY version signed,
+// not just the newest: TREK verifies whichever version a pinned install runs, so an
+// unsigned older block would install green here and then be refused by the host.
+{
+  const e = baseEntry()
+  const older = { ...e.versions[0], version: '0.9.0', gitTag: 'v0.9.0' }
+  delete older.signature
+  e.versions = [...e.versions, older] // newest (signed) first, older (unsigned) second
+  expect('a first signed publish with an unsigned older version fails', runGate(e), false, 'no signature')
+}
+
 {
   const e = baseEntry()
   e.authorPublicKey = 'not-base64-a-key'

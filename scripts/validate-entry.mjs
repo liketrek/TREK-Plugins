@@ -91,16 +91,36 @@ for (const p of checkSignatureShape(entry)) bad(p)
 const baseSha = process.env.BASE_SHA
 let previous = null
 if (baseSha) {
-  try {
-    // Resolve against the repo the ENTRY lives in, not the one this script lives in — they
-    // are the same in CI, but tying the lookup to the entry keeps the guard testable.
-    const entryDir = path.dirname(path.resolve(entryPath))
-    const git = (...a) => execFileSync('git', a, { cwd: entryDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim()
-    const repoRoot = git('rev-parse', '--show-toplevel')
-    const rel = path.relative(repoRoot, path.resolve(entryPath))
-    previous = JSON.parse(git('show', `${baseSha}:${rel}`))
-  } catch {
-    previous = null // new plugin, or unreadable base — nothing to downgrade from
+  // Resolve against the repo the ENTRY lives in, not the one this script lives in — they
+  // are the same in CI, but tying the lookup to the entry keeps the guard testable.
+  const entryDir = path.dirname(path.resolve(entryPath))
+  const git = (...a) => execFileSync('git', a, { cwd: entryDir, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim()
+  let repoRoot = null
+  try { repoRoot = git('rev-parse', '--show-toplevel') } catch { repoRoot = null } // not a git checkout — nothing to compare
+  if (repoRoot) {
+    // git addresses tree paths with '/', but path.relative yields '\' on Windows, so
+    // `git show <sha>:registry\plugins\x.json` fails there. That failure used to be
+    // swallowed as "new plugin", silently disabling the whole downgrade guard (and the
+    // test:gates self-tests) on a maintainer's own machine.
+    const rel = path.relative(repoRoot, path.resolve(entryPath)).split(path.sep).join('/')
+    let baseText = null
+    try {
+      baseText = git('show', `${baseSha}:${rel}`)
+    } catch (err) {
+      // A path simply absent from the base tree is a brand-new plugin — the opt-in case,
+      // and fine. ANY other git failure (bad base sha, IO, shallow clone) must NOT wave
+      // the guard through, or a signed plugin could ship an unsigned or re-keyed update
+      // unnoticed. Fail closed on the unexpected instead of skipping the check.
+      const msg = String(err.stderr || err.message || '')
+      const isNewEntry = /exists on disk, but not in|does not exist in/i.test(msg)
+      if (!isNewEntry) {
+        bad(`could not read the base revision of ${rel} for the signing-downgrade guard (${msg.split('\n')[0] || 'git error'}); refusing rather than skipping the check`)
+      }
+    }
+    if (baseText) {
+      try { previous = JSON.parse(baseText) }
+      catch (e) { bad(`the base revision of ${rel} is not valid JSON, so the signing-downgrade guard cannot run: ${e.message}`) }
+    }
   }
 }
 
@@ -126,11 +146,9 @@ if (baseSha) {
     } else if (previous.authorPublicKey !== entry.authorPublicKey && process.env.ALLOW_KEY_CHANGE !== '1') {
       bad(`"${entry.id}" changes its authorPublicKey — TREK refuses a key rotation until an admin re-trusts the plugin. Key changes need a maintainer override.`)
     }
-    // Every version must stay signed, not just the newest: TREK verifies whichever
-    // version it installs, so an unsigned older block is a landmine for a pinned install.
-    for (const v of entry.versions ?? []) {
-      if (!v.signature) bad(`${v.version}: "${entry.id}" is a signed plugin, but this version has no signature — TREK will refuse to install it`)
-    }
+    // Every-version-signed is enforced for ALL signed entries by checkSignatureShape
+    // above — including a first signed publish, which reaches this block with no base to
+    // compare against — so it no longer needs its own loop here.
   }
 }
 

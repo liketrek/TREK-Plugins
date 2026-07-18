@@ -113,10 +113,21 @@ export function checkSignatureShape(entry) {
     }
   }
 
-  // A key with no signed version at all is a publishing mistake: TREK pins the key
-  // on first install and then requires every later version to be signed by it.
-  if (key && versions.length && !versions.some((v) => v.signature)) {
-    problems.push('authorPublicKey is set but no version carries a signature — either sign the release or drop the key')
+  // TREK pins the key on first install (TOFU) and then verifies whichever version it
+  // installs, so EVERY version of a signed plugin must carry a signature — not just the
+  // newest. Enforcing that here (the always-run shape check) rather than only in the
+  // update-path guard closes the first-signed-publish gap: an entry whose newest version
+  // is signed but an older one is not would otherwise pass offline and then be refused by
+  // the host on a pinned install of the older version.
+  if (key && versions.length) {
+    const unsigned = versions.filter((v) => !v.signature)
+    if (unsigned.length === versions.length) {
+      problems.push('authorPublicKey is set but no version carries a signature — either sign the release or drop the key')
+    } else {
+      for (const v of unsigned) {
+        problems.push(`${v.version}: authorPublicKey is set but this version has no signature — every version of a signed plugin must be signed, since TREK verifies whichever version it installs`)
+      }
+    }
   }
 
   return problems
