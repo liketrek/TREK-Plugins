@@ -55,6 +55,16 @@ if (entry.icon && !LUCIDE_ICON_NAMES.has(entry.icon)) {
   bad(`icon "${entry.icon}" is not a lucide icon name — TREK would fall back to Blocks. See https://lucide.dev/icons`)
 }
 
+// --- downloadCount is computed, not submitted ---
+// build/aggregate.mjs injects it into dist/index.json from registry/stats.json; only
+// registry.schema.json's published-entry shape knows the field, so the entry schema already
+// rejects it as an unknown property. This check exists for the error message: in a
+// registry/plugins file it would be a hand-picked popularity number that flows straight
+// into the index whenever the stats cron has no count to overwrite it with.
+if ('downloadCount' in entry) {
+  bad('downloadCount is computed by CI (build/aggregate.mjs, from registry/stats.json) and lives only in dist/index.json — remove it from the entry')
+}
+
 // --- homoglyph / mixed-script name ---
 // Reject a name that mixes Latin with Cyrillic/Greek look-alikes (spoofing).
 if (entry.name) {
@@ -115,6 +125,26 @@ if (baseSha) {
       const isNewEntry = /exists on disk, but not in|does not exist in/i.test(msg)
       if (!isNewEntry) {
         bad(`could not read the base revision of ${rel} for the signing-downgrade guard (${msg.split('\n')[0] || 'git error'}); refusing rather than skipping the check`)
+      } else {
+        // Absent from the base TREE is not the same as never published: delete-then-re-add
+        // would otherwise reset the baseline, letting an unsigned or re-keyed RESURRECTION
+        // of a previously-signed plugin through as "brand new" — the exact downgrade the
+        // guard exists to stop, laundered through two PRs instead of one. So when the path
+        // is missing at BASE_SHA, look for its last deletion in the base branch's HISTORY
+        // and treat the entry as it stood just before that as the baseline. Needs full
+        // history — validate.yml checks out with fetch-depth: 0.
+        //
+        // Fail-closed here too: a deletion we can see but whose prior state we cannot read
+        // is a refusal, not a skip.
+        try {
+          // `:(top)` because a `git log` pathspec is cwd-relative and the guard runs git from
+          // the entry's directory — rel is root-relative, like every other tree path here.
+          const deletedAt = git('log', '--diff-filter=D', '--format=%H', '-1', baseSha, '--', `:(top)${rel}`)
+          if (deletedAt) baseText = git('show', `${deletedAt}^:${rel}`)
+        } catch (err2) {
+          const msg2 = String(err2.stderr || err2.message || '')
+          bad(`"${entry.id}" is absent at the PR base but its history could not be checked for a prior (deleted) publication (${msg2.split('\n')[0] || 'git error'}); refusing rather than skipping the signing-downgrade guard`)
+        }
       }
     }
     if (baseText) {

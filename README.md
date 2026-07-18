@@ -83,7 +83,7 @@ your plugin just looks like every other one in the store.
 ### TREK version compatibility
 
 Your manifest's **`trek`** field is the semver **range** of TREK versions your plugin
-supports (`">=3.2.0 <4.0.0"`). Since TREK 3.3.1 it is **load-bearing, not advisory**: TREK
+supports (`">=3.2.0 <4.0.0"`). Since TREK 3.4.0 it is **load-bearing, not advisory**: TREK
 refuses to install a plugin whose range excludes the running version, and refuses to
 *activate* one it has since outgrown — so a plugin that ships without a range, or with the
 wrong one, is simply uninstallable.
@@ -127,25 +127,36 @@ index:
 - **No signing downgrade** — TREK pins the author key on **first install** (trust-on-first-use).
   Once a plugin has shipped signed, an update that drops the key, drops a version's signature,
   or is signed with a *different* key is refused on every instance that already has it. CI
-  compares against the entry on the PR base and blocks all three.
+  compares against the entry on the PR base and blocks all three. An entry **absent** from the
+  base is compared against its last published state in the base branch's *history*, if it has
+  one — so deleting a plugin and re-adding it later does not reset the baseline, and an
+  unsigned or re-keyed resurrection of a previously-signed id is caught like any other
+  downgrade.
 
 Rotating a key is therefore not a routine release: every existing install stops updating
-until an admin explicitly **re-trusts** the new key in TREK's admin UI (TREK ≥ 3.3.1 shows
+until an admin explicitly **re-trusts** the new key in TREK's admin UI (TREK ≥ 3.4.0 shows
 both fingerprints and asks them to confirm the new one with you out of band).
 
 ### Maintainer overrides
 
-Two gates protect *existing installs* rather than the submission itself, so each has an
-escape hatch — for a real repo transfer, or a genuinely rotated key. A maintainer opens
-them by applying a **label** to the PR:
+Some gates protect *existing installs* (or the registry itself) rather than the submission,
+so each has an escape hatch — for a real repo transfer, a genuinely rotated key, a plugin
+that really is being retired. A maintainer opens them by applying a **label** to the PR:
 
 | Label | Lifts | Use when |
 |---|---|---|
-| `allow-key-change` | `authorPublicKey` differs from the entry on the PR base | The author rotated their signing key, or lost it and made a new one |
-| `allow-owner-change` | The entry's repo owner differs from the `id`'s binding in [`OWNERS.json`](./OWNERS.json) | The plugin genuinely moved to a new owner or org |
+| `allow-key-change` | `authorPublicKey` differs from the entry on the PR base (or, for a re-added id, from its last published state) | The author rotated their signing key, or lost it and made a new one |
+| `allow-owner-change` | The entry's repo owner differs from the `id`'s binding in [`OWNERS.json`](./OWNERS.json) — and any manual edit to `OWNERS.json` itself | The plugin genuinely moved to a new owner or org |
+| `allow-removal` | The PR deletes (or renames away) a `registry/plugins/*.json` entry | The plugin is genuinely being unlisted or renamed — a maintainer decision, never a routine submission |
 
 Applying the label re-runs the validation workflow, and the gate passes. Removing it puts
 the gate back.
+
+`OWNERS.json` is written by `publish.yml` on merge and is validated on every PR: it must
+keep the exact `id → { boundOwner, repo, firstReviewedAt }` shape, and every bound id must
+map to a registry entry — or to the tombstone of one that was deliberately removed (the
+binding of a deleted plugin is kept so nobody else can claim its id). Editing it by hand
+is the exceptional case and needs the `allow-owner-change` label.
 
 It is a label rather than anything in the PR itself **on purpose**: labelling requires
 triage/write permission on this repo, which a fork contributor does not have — so an author

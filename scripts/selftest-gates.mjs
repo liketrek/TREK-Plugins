@@ -16,6 +16,8 @@ import { writeFileSync, readFileSync, mkdtempSync, rmSync, mkdirSync } from 'nod
 import { tmpdir } from 'node:os'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import Ajv2020 from 'ajv/dist/2020.js'
+import addFormats from 'ajv-formats'
 import { satisfiableRange, trekFloor } from './lib/trek-range.mjs'
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
@@ -55,8 +57,10 @@ let failures = 0
 const results = []
 
 /** Run the validator against `entry` written as <id>.json; returns { ok, out }.
- *  `overrides` sets the maintainer-override env vars the validate.yml labels supply. */
-function runGate(entry, { baseEntry: prev, overrides = {} } = {}) {
+ *  `overrides` sets the maintainer-override env vars the validate.yml labels supply.
+ *  `deleteAtBase` commits the previous entry and then its DELETION, so the entry is
+ *  absent at BASE_SHA but present in history — the delete-then-re-add resurrection. */
+function runGate(entry, { baseEntry: prev, overrides = {}, deleteAtBase = false } = {}) {
   const dir = mkdtempSync(path.join(tmpdir(), 'trek-selftest-'))
   try {
     // The downgrade guard reads the previous entry via `git show $BASE_SHA:<path>`, so the
@@ -74,6 +78,11 @@ function runGate(entry, { baseEntry: prev, overrides = {} } = {}) {
       writeFileSync(file, JSON.stringify(prev, null, 2))
       git('add', '-A')
       git('commit', '-qm', 'base')
+      if (deleteAtBase) {
+        git('rm', '-q', file) // also prunes the emptied registry/plugins dirs…
+        git('commit', '-qm', 'remove')
+        mkdirSync(reg, { recursive: true }) // …so put them back for the re-add below
+      }
       env.BASE_SHA = 'HEAD'
     }
     writeFileSync(file, JSON.stringify(entry, null, 2))
@@ -164,6 +173,49 @@ expect('a well-formed signed entry passes', runGate(baseEntry()), true)
   expect('a signed plugin CHANGING its key fails', runGate(e, { baseEntry: prev }), false, 'changes its authorPublicKey')
 }
 
+// --- delete-then-re-add (resurrection) ---
+//
+// An entry absent at BASE_SHA is not necessarily new: deleting a signed plugin in one PR
+// and re-adding it in another used to reset the downgrade baseline, laundering the exact
+// unsigned/re-keyed update the guard exists to stop. The guard now digs the last published
+// state out of the base branch's history and treats THAT as the baseline.
+{
+  const prev = baseEntry()
+  const e = baseEntry()
+  delete e.authorPublicKey
+  delete e.versions[0].signature
+  expect('re-adding a DELETED signed plugin unsigned fails', runGate(e, { baseEntry: prev, deleteAtBase: true }), false, 'drops authorPublicKey')
+}
+{
+  const prev = baseEntry()
+  const e = baseEntry()
+  e.authorPublicKey = Buffer.alloc(32, 42).toString('base64')
+  expect('re-adding a DELETED signed plugin with a DIFFERENT key fails', runGate(e, { baseEntry: prev, deleteAtBase: true }), false, 'changes its authorPublicKey')
+}
+{
+  expect('re-adding a DELETED signed plugin with the SAME key passes', runGate(baseEntry(), { baseEntry: baseEntry(), deleteAtBase: true }), true)
+}
+{
+  const prev = baseEntry()
+  const e = baseEntry()
+  e.authorPublicKey = Buffer.alloc(32, 42).toString('base64')
+  expect(
+    'a re-keyed resurrection PASSES with ALLOW_KEY_CHANGE=1 (the allow-key-change label)',
+    runGate(e, { baseEntry: prev, deleteAtBase: true, overrides: { ALLOW_KEY_CHANGE: '1' } }),
+    true,
+  )
+}
+{
+  // A plugin that never signed carries no baseline key — its resurrection is not a downgrade.
+  const unsigned = () => {
+    const e = baseEntry()
+    delete e.authorPublicKey
+    delete e.versions[0].signature
+    return e
+  }
+  expect('re-adding a DELETED unsigned plugin passes', runGate(unsigned(), { baseEntry: unsigned(), deleteAtBase: true }), true)
+}
+
 // apiVersion is optional in the manifest (TREK and the SDK both default it to 1). The
 // entry always carries 1. This used to fail parity with "manifest apiVersion undefined != 1".
 {
@@ -247,7 +299,7 @@ expect('a well-formed signed entry passes', runGate(baseEntry()), true)
   expect('an entry WITHOUT a trek range still passes (published before the field existed)', runGate(noTrek), true)
 
   // `trek` supersedes minTrekVersion, so a new entry simply omits the floor. It was required
-  // until 3.3.1, which meant a new plugin had to restate — in a weaker form — a fact its range
+  // until 3.4.0, which meant a new plugin had to restate — in a weaker form — a fact its range
   // already carried.
   const noFloor = baseEntry()
   delete noFloor.versions[0].minTrekVersion
@@ -280,6 +332,124 @@ expect('a well-formed signed entry passes', runGate(baseEntry()), true)
     expect(`trekFloor(${JSON.stringify(range)}) === ${JSON.stringify(want)}`, { ok: trekFloor(range) === want, out: String(trekFloor(range)) }, true)
   }
   expect('satisfiableRange rejects an empty range', { ok: !satisfiableRange('>=4.0.0 <3.0.0'), out: '' }, true)
+}
+
+// --- downloadCount: computed, never submitted ---
+//
+// downloadCount exists only in dist/index.json (build/aggregate.mjs injects it from
+// registry/stats.json). The entry schema doesn't know the field at all — only
+// registry.schema.json's published-entry shape admits it — and the gate refuses it in a
+// submission with a message that says why, instead of a bare unevaluatedProperties error.
+{
+  const e = baseEntry()
+  e.downloadCount = 12345
+  expect('an entry submitting its own downloadCount fails', runGate(e), false, 'computed by CI')
+}
+{
+  // The published shape: what aggregate.mjs emits (downloadCount + the publish-stamped
+  // reviewedAt/boundOwner) must validate against registry.schema.json, which extends the
+  // entry core (plugin-entry.schema.json#/$defs/entry) with the CI-injected downloadCount
+  // — this is the check that used to fail.
+  const ajv = new Ajv2020({ allErrors: true, strict: false })
+  addFormats(ajv)
+  ajv.addSchema(JSON.parse(readFileSync(path.join(ROOT, 'schema', 'plugin-entry.schema.json'), 'utf8')))
+  const validateRegistry = ajv.compile(JSON.parse(readFileSync(path.join(ROOT, 'schema', 'registry.schema.json'), 'utf8')))
+  const aggregated = {
+    schemaVersion: 1,
+    generatedAt: '2026-07-18T00:00:00.000Z',
+    plugins: [{ ...baseEntry(), downloadCount: 42, reviewedAt: '2026-07-18', boundOwner: 'someone' }],
+  }
+  expect(
+    'the aggregated dist/index.json shape validates against registry.schema.json',
+    { ok: !!validateRegistry(aggregated), out: JSON.stringify(validateRegistry.errors) },
+    true,
+  )
+}
+
+// --- the OWNERS.json gate ---
+//
+// OWNERS.json is the trust anchor the owner-binding gate reads; validate-owners.mjs is what
+// keeps it well-formed and honest (every binding maps to an entry, or to the tombstone of a
+// deliberately removed one). Same fixture idea as runGate: a real git repo, because the
+// tombstone check reads history.
+
+/** Run validate-owners.mjs in a fixture repo; `entries` exist, `tombstones` existed and were removed. */
+function runOwnersGate(owners, { entries = [], tombstones = [] } = {}) {
+  const dir = mkdtempSync(path.join(tmpdir(), 'trek-owners-'))
+  try {
+    const reg = path.join(dir, 'registry', 'plugins')
+    mkdirSync(reg, { recursive: true })
+    const git = (...a) => execFileSync('git', a, { cwd: dir, stdio: 'ignore' })
+    git('init', '-q')
+    git('config', 'user.email', 'selftest@example.com')
+    git('config', 'user.name', 'selftest')
+    for (const id of [...entries, ...tombstones]) writeFileSync(path.join(reg, `${id}.json`), '{}\n')
+    writeFileSync(path.join(dir, 'OWNERS.json'), JSON.stringify(owners, null, 2))
+    git('add', '-A')
+    git('commit', '-qm', 'base')
+    for (const id of tombstones) git('rm', '-q', path.join(reg, `${id}.json`))
+    if (tombstones.length) git('commit', '-qm', 'remove')
+    try {
+      const out = execFileSync('node', [path.join(ROOT, 'scripts', 'validate-owners.mjs')], {
+        cwd: dir,
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe'],
+      })
+      return { ok: true, out }
+    } catch (e) {
+      return { ok: false, out: (e.stdout || '') + (e.stderr || '') }
+    }
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+{
+  const binding = { boundOwner: 'someone', repo: 'someone/trek-plugin-selftest', firstReviewedAt: '2026-01-01' }
+  expect(
+    'a binding that maps to an existing entry passes',
+    runOwnersGate({ plugins: { 'selftest-plugin': binding } }, { entries: ['selftest-plugin'] }),
+    true,
+  )
+  expect(
+    'a binding for a DELETED entry passes (tombstone reserves the id)',
+    runOwnersGate({ plugins: { 'selftest-plugin': binding } }, { tombstones: ['selftest-plugin'] }),
+    true,
+  )
+  expect(
+    'a binding for an id that never had an entry fails',
+    runOwnersGate({ plugins: { 'selftest-plugin': binding } }),
+    false,
+    'none ever did',
+  )
+  expect(
+    'a binding missing firstReviewedAt fails',
+    runOwnersGate(
+      { plugins: { 'selftest-plugin': { boundOwner: 'someone', repo: 'someone/x' } } },
+      { entries: ['selftest-plugin'] },
+    ),
+    false,
+    'firstReviewedAt',
+  )
+  expect(
+    'an unknown top-level key in OWNERS.json fails',
+    runOwnersGate({ plugins: {}, extra: true }),
+    false,
+    'unknown top-level key',
+  )
+  // The repo's real OWNERS.json must itself pass the gate it feeds.
+  let own
+  try {
+    const out = execFileSync('node', [path.join(ROOT, 'scripts', 'validate-owners.mjs')], {
+      cwd: ROOT,
+      encoding: 'utf8',
+      stdio: ['ignore', 'pipe', 'pipe'],
+    })
+    own = { ok: true, out }
+  } catch (e) {
+    own = { ok: false, out: (e.stdout || '') + (e.stderr || '') }
+  }
+  expect("this repo's own OWNERS.json passes the gate", own, true)
 }
 
 console.log(results.join('\n'))

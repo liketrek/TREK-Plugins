@@ -17,6 +17,10 @@ on:
       # would trigger no workflow at all and sail past the guard below. Trigger on it so the
       # guard can actually fire.
       - 'dist/**'
+      # OWNERS.json is the id→owner trust anchor the owner-binding gate reads. A PR that
+      # edits ONLY it used to run no CI at all — the one file whose silent rewrite defeats
+      # the binding would merge unchecked. Trigger on it so the OWNERS gate below can fire.
+      - 'OWNERS.json'
 
 permissions:
   contents: read
@@ -62,16 +66,54 @@ jobs:
             exit 1
           fi
 
+      # Deleting an entry is not a routine submission: it unlists the plugin for every TREK
+      # instance, and — worse — a LATER PR re-adding the same id would otherwise look brand
+      # new, resetting the signing-downgrade baseline (validate-entry.mjs guards against the
+      # resurrection too, via base-branch history, but the removal itself still deserves a
+      # human decision). Same override mechanism as the other two gates: a label, because a
+      # fork contributor cannot apply one. `--no-renames` so a renamed-away entry counts as
+      # the removal of its old id — a rename changes the id (id must equal the filename),
+      # which IS a remove-plus-add.
+      - name: Reject entry removals without a maintainer override
+        env:
+          ALLOW_REMOVAL: ${{ contains(github.event.pull_request.labels.*.name, 'allow-removal') && '1' || '' }}
+        run: |
+          removed=$(git diff --name-only --no-renames --diff-filter=D "$BASE_SHA"...HEAD -- 'registry/plugins/*.json' || true)
+          if [ -n "$removed" ] && [ -z "$ALLOW_REMOVAL" ]; then
+            echo "$removed" | while IFS= read -r f; do
+              echo "::error::This PR removes $f — deleting (or renaming) a registry entry needs a maintainer to apply the allow-removal label."
+            done
+            exit 1
+          fi
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - run: npm ci
 
+      # OWNERS.json is maintained by publish.yml on merge; a manual edit is the exceptional
+      # case (a deliberate owner change, or cleaning up a stale binding) and reuses the same
+      # override the owner-binding gate has, because that is exactly what such an edit is.
+      # The shape check runs on EVERY PR — it is cheap, and it means nothing that reaches
+      # this workflow can leave the trust anchor unreadable or pointing at ids that never
+      # existed.
+      - name: Validate OWNERS.json (owner bindings)
+        env:
+          ALLOW_OWNER_CHANGE: ${{ contains(github.event.pull_request.labels.*.name, 'allow-owner-change') && '1' || '' }}
+        run: |
+          if git diff --name-only "$BASE_SHA"...HEAD -- OWNERS.json | grep -q . && [ -z "$ALLOW_OWNER_CHANGE" ]; then
+            echo "::error::This PR edits OWNERS.json — the owner-binding trust anchor is written by publish.yml on merge; a manual edit needs a maintainer to apply the allow-owner-change label."
+            exit 1
+          fi
+          node scripts/validate-owners.mjs
+
       - name: Determine changed plugin entries
         id: changed
         run: |
-          files=$(git diff --name-only --diff-filter=ACM "$BASE_SHA"...HEAD -- 'registry/plugins/*.json' || true)
+          # ACMR, not ACM: a RENAMED entry file is still a submission — with rename detection
+          # on and R excluded, a rename validated zero entries and merged unchecked.
+          files=$(git diff --name-only --diff-filter=ACMR "$BASE_SHA"...HEAD -- 'registry/plugins/*.json' || true)
           echo "files<<EOF" >> "$GITHUB_OUTPUT"
           echo "$files" >> "$GITHUB_OUTPUT"
           echo "EOF" >> "$GITHUB_OUTPUT"

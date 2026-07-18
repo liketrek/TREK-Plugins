@@ -5,6 +5,7 @@
   "description": "Live flight status, schedule and airborne position for a flight reservation, from AeroDataBox and adsb.fi.",
   "repo": "fbnlrz/trek-track",
   "type": "widget",
+  "icon": "Plane",
   "versions": [
     {
       "version": "1.7.6",
@@ -12,6 +13,7 @@
       "commitSha": "cbbb0f26b043b071c3d19e1839df342337046840",
       "downloadUrl": "https://github.com/fbnlrz/trek-track/releases/download/v1.7.6/plugin.zip",
       "sha256": "f911217b3b9aa97ee90b51991ac886d8e68a2083b9a164f1ab8fac44882ef299",
+      "trek": ">=3.3.0 <4.0.0",
       "minTrekVersion": "3.3.0",
       "size": 79543,
       "apiVersion": 1,
