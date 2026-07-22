@@ -1,0 +1,23 @@
+{
+  "id": "featured-guides",
+  "name": "Featured Guides",
+  "author": "raduwolf12",
+  "description": "Curated destination guides enriched with real places to explore, with one-tap add straight into your trip.",
+  "repo": "raduwolf12/featured-guides",
+  "type": "page",
+  "versions": [
+    {
+      "version": "1.1.0",
+      "gitTag": "v1.1.0",
+      "commitSha": "07d43655fde1079741d73cdfe32fda29c5fecf51",
+      "downloadUrl": "https://github.com/raduwolf12/featured-guides/releases/download/v1.1.0/plugin.zip",
+      "sha256": "61c0e9a1ecbfea1691f61de5e01b6b941e020c65df67aad2366dff134cf21853",
+      "trek": ">=3.4.0 <4.0.0",
+      "size": 557734,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-07-22T00:12:07.072Z"
+    }
+  ],
+  "icon": "Compass"
+}
