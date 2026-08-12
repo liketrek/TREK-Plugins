@@ -1,0 +1,26 @@
+{
+  "id": "wanderlog-import",
+  "name": "Wanderlog Import",
+  "author": "lahlafi",
+  "description": "Import a trip from Wanderlog into TREK by pasting its view URL — recreates days, places, notes, flights, and hotel stays.",
+  "repo": "danl12353231/TREK-Wanderlog-plugin",
+  "type": "page",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "gitTag": "v1.0.0",
+      "commitSha": "8a34fcfae7cdc6954556c2f185d6753f68839e5b",
+      "downloadUrl": "https://github.com/danl12353231/TREK-Wanderlog-plugin/releases/download/v1.0.0/plugin.zip",
+      "sha256": "775c76ed8dbce6a0a9cb104236f89fa9a2691cb4dcecce15bd3f8f6a72e84e3e",
+      "trek": ">=3.4.0 <4.0.0",
+      "size": 23467,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-08-12T04:27:19.245Z",
+      "signature": "n721UFtU18z6DE9T4UZTtRc6f4sdvolC+4Z/eZj45jZi8fcB/ZxyfaAqFvv2pG1tshNc7c78vyTBeukY3Gj+DQ=="
+    }
+  ],
+  "icon": "Plane",
+  "homepage": "https://github.com/danl12353231/TREK-Wanderlog-plugin",
+  "authorPublicKey": "qm16jmvuqyG+JN0B5ivp0AP1D3Cp3CgF2yX97HG/XxM="
+}
