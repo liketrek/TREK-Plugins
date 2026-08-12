@@ -1,0 +1,22 @@
+{
+  "id": "amap-search",
+  "name": "高德搜索",
+  "author": "imusic-487",
+  "description": "在 TREK 里直接搜索高德 POI，一键复制地址或添加进当前行程（自动带坐标/地图链接/电话）。",
+  "repo": "imusic-487/Trek-Amap-search",
+  "type": "trip-page",
+  "versions": [
+    {
+      "version": "1.0.1",
+      "gitTag": "v1.0.1",
+      "commitSha": "1231ee03dbfb09f5967c7b8c9344a443feab63ee",
+      "downloadUrl": "https://github.com/imusic-487/Trek-Amap-search/releases/download/v1.0.1/plugin.zip",
+      "sha256": "206820a5223e6946b9092877400c02ec107bd0d394221e2546d74eb65e1ace21",
+      "trek": ">=3.4.0 <4.0.0",
+      "size": 17441,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-08-12T03:20:07.300Z"
+    }
+  ]
+}
