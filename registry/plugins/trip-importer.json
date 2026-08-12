@@ -7,6 +7,18 @@
   "type": "page",
   "versions": [
     {
+      "version": "1.2.3",
+      "gitTag": "v1.2.3",
+      "commitSha": "ff8e6419b641d0dc8241742b06c81d827025c0b1",
+      "downloadUrl": "https://github.com/raduwolf12/trip-importer/releases/download/v1.2.3/plugin.zip",
+      "sha256": "be463ee461c3fb0d72d4d4e59c3db686d647cb9c12508ce54939bbb0d26f5314",
+      "trek": ">=3.4.0 <4.0.0",
+      "size": 534962,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-08-12T20:08:30.094Z"
+    },
+    {
       "version": "1.2.0",
       "gitTag": "v1.2.0",
       "commitSha": "bdd135308fed829ad776f8125d29dcd994dab376",
