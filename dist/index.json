@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-23T04:04:29.593Z",
+  "generatedAt": "2026-08-23T22:41:38.681Z",
   "plugins": [
     {
       "id": "amap-search",
@@ -503,10 +503,23 @@
       "id": "trek-vox-plugin",
       "name": "Vox",
       "author": "MaximeCn",
-      "description": "A collaborative voting plugin for TREK. Create events linked to trip locations, collect 1–5 ratings, and compute average scores plus a participation-aware consensus index.",
+      "description": "Decide together what the trip actually does. Propose activities, rate them 1 to 5, and Vox ranks the group's picks, flags what you disagree on, and puts the winners straight into the itinerary.",
       "repo": "MaximeCn/trek-vox-plugin",
       "type": "trip-page",
       "versions": [
+        {
+          "version": "2.0.0",
+          "gitTag": "v2.0.0",
+          "commitSha": "f1c6692c51d8dcd0ed9cad25dfd5010f2cc25990",
+          "downloadUrl": "https://github.com/MaximeCn/trek-vox-plugin/releases/download/v2.0.0/plugin.zip",
+          "sha256": "584f53b0f5b2c063b707eb14b23e0a220700700414806d5b45908f6bf3ad4b06",
+          "trek": ">=3.3.0 <4.0.0",
+          "size": 38446,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-08-23T15:00:47.927Z",
+          "signature": "ZHyfBE661Q2FvtYL8H1zflGbroi2qL82Q8NAo9hkStSIONVNM/vnlXPulbYTnjQGLjJXrxeKoMZxBvh+22jpAw=="
+        },
         {
           "version": "1.0.1",
           "gitTag": "v1.0.1",
@@ -517,15 +530,17 @@
           "size": 26996,
           "apiVersion": 1,
           "nativeModules": false,
-          "publishedAt": "2026-07-19T08:32:03.484Z"
+          "publishedAt": "2026-07-19T08:32:03.484Z",
+          "signature": "aqrTTe0UOfdJd7TEwdyPMrA5zYCBVqYaomr8xlwGk1/36zz29n8EP8qI5GsmiAv0hsc/DriC1ljBbuvFBEStDA=="
         }
       ],
       "icon": "Trophy",
       "homepage": "https://github.com/MaximeCn/trek-vox-plugin",
-      "reviewedAt": "2026-07-19",
+      "reviewedAt": "2026-08-23",
       "boundOwner": "MaximeCn",
+      "authorPublicKey": "cKYogbifobHEVUFuAc/FEhKT5IXqC8VQwlayShTi9v4=",
       "downloadCount": 69,
-      "screenshotUrl": "https://raw.githubusercontent.com/MaximeCn/trek-vox-plugin/0dc836ca685d241c279741cd78c7908300853004/docs/desktop-create-activity.png"
+      "screenshotUrl": "https://raw.githubusercontent.com/MaximeCn/trek-vox-plugin/f1c6692c51d8dcd0ed9cad25dfd5010f2cc25990/docs/screenshot.png"
     },
     {
       "id": "trek-x-japan",
