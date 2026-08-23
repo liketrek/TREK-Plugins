@@ -12,7 +12,7 @@
       "commitSha": "94205fc109e74943dc562f2667f9a405ae02cad5",
       "downloadUrl": "https://github.com/raduwolf12/transport-search/releases/download/v1.7.2/plugin.zip",
       "sha256": "b9685391aa2f4c76a823e8fdb3390150f0378fe451ad2c188c66fe30dbc6b5fe",
-      "trek": ">=3.3.0 <4.1.0",
+      "trek": ">=3.3.0 <5.0.0",
       "size": 40763,
       "apiVersion": 1,
       "nativeModules": false,

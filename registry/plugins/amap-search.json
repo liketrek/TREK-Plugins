@@ -19,7 +19,7 @@
       "commitSha": "027681863ee1a3d62a2efa3d261d614d7b20d181",
       "downloadUrl": "https://github.com/imusic-487/Trek-Amap-search/releases/download/v1.3.29/plugin.zip",
       "sha256": "58f3ba4e1b67aeeb5441e1afbec57a6fcef151be2dc12ad3427bc5034759e6f2",
-      "trek": ">=3.4.0 <4.0.0",
+      "trek": ">=3.4.0 <5.0.0",
       "size": 39577,
       "apiVersion": 1,
       "nativeModules": false,

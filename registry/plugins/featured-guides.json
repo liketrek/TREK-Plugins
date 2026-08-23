@@ -12,7 +12,7 @@
       "commitSha": "51e9c6e0db31b759e97cd41e15cbbfeff48f50b1",
       "downloadUrl": "https://github.com/raduwolf12/featured-guides/releases/download/v2.0.1/plugin.zip",
       "sha256": "4a66864d63bd5a042cd54150485780077c522925cfbe80bd70e87c970b4b718c",
-      "trek": ">=3.4.0 <4.1.0",
+      "trek": ">=3.4.0 <5.0.0",
       "size": 904189,
       "apiVersion": 1,
       "nativeModules": false,

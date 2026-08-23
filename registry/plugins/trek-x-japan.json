@@ -13,7 +13,7 @@
       "commitSha": "df8c977e42b1bad85f4afae78820490f64f05f77",
       "downloadUrl": "https://github.com/fbnlrz/trek-x-japan/releases/download/v1.2.0/plugin.zip",
       "sha256": "5ba9a187c3fa5c5721a943b84b39eca96383ef0331cc73bc944f30bf5f2a0562",
-      "trek": ">=3.2.1 <4.0.0",
+      "trek": ">=3.2.1 <5.0.0",
       "minTrekVersion": "3.2.1",
       "size": 79830,
       "apiVersion": 1,

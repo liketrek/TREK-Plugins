@@ -13,7 +13,7 @@
       "commitSha": "6e31aaa56abedc590e2e6bc113ea722b737b529b",
       "downloadUrl": "https://github.com/fbnlrz/trek-track/releases/download/v1.8.0/plugin.zip",
       "sha256": "cbc5faea57bcdd941411e9dfef455307761fcca49df18713781b8fdea86171a8",
-      "trek": ">=3.4.0 <4.0.0",
+      "trek": ">=3.4.0 <5.0.0",
       "size": 116121,
       "apiVersion": 1,
       "nativeModules": false,

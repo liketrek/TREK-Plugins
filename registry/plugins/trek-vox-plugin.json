@@ -12,7 +12,7 @@
       "commitSha": "0dc836ca685d241c279741cd78c7908300853004",
       "downloadUrl": "https://github.com/MaximeCn/trek-vox-plugin/releases/download/v1.0.1/plugin.zip",
       "sha256": "7612b91d79fb880b27472f1816bc7b34d2758b122a6e4ba9356e621b483d8eee",
-      "trek": ">=3.2.0 <4.0.0",
+      "trek": ">=3.2.0 <5.0.0",
       "size": 26996,
       "apiVersion": 1,
       "nativeModules": false,

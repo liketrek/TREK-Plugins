@@ -12,7 +12,7 @@
       "commitSha": "e5281a07a3c3a149e43ab4a8e34ba6ee6be6271e",
       "downloadUrl": "https://github.com/raduwolf12/trip-gallery/releases/download/v1.0.1/plugin.zip",
       "sha256": "2b8e690f59756dd5abb26e7a3c63128ce90ebfd3e69e34e9ee1cb2dbc8e47750",
-      "trek": ">=3.4.0 <4.1.0",
+      "trek": ">=3.4.0 <5.0.0",
       "size": 358749,
       "apiVersion": 1,
       "nativeModules": false,

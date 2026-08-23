@@ -12,7 +12,7 @@
       "commitSha": "fad510dc59007b733680ca167ccf132eb651d16d",
       "downloadUrl": "https://github.com/raduwolf12/trip-research/releases/download/v1.2.0/plugin.zip",
       "sha256": "9937094ffc501dfe362585d1b384efa9373ff558614a5f3e95cdf45cabddb02b",
-      "trek": ">=3.3.0 <4.1.0",
+      "trek": ">=3.3.0 <5.0.0",
       "size": 92710,
       "apiVersion": 1,
       "nativeModules": false,
