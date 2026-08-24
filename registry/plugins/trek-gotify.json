@@ -9,17 +9,17 @@
   "versions": [
     {
       "version": "1.0.1",
-      "gitTag": "v1.0.1",
-      "commitSha": "eeb325ea6b5d1f89bf257e8437319877e3a3fe5d",
-      "downloadUrl": "https://github.com/jubnl/trek-gotify/releases/download/v1.0.1/plugin.zip",
-      "sha256": "07af2f7c3be8ad28a0dc763069ad6bd2cb8a8a4841f828ae0010bea58b482923",
-      "trek": ">=3.3.0 <4.0.0",
-      "size": 6760,
+      "gitTag": "v1.0.2",
+      "commitSha": "cbbb986f0c6a0c3ca7499d9a4c436423af7b7e9a",
+      "downloadUrl": "https://github.com/jubnl/trek-gotify/releases/download/v1.0.2/plugin.zip",
+      "sha256": "b9912276b40c22f65b3c682f9c4abe908ab3a555c3acd5939eebf424426beffe",
+      "trek": ">=3.3.0 <5.0.0",
+      "size": 6759,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-07-19T11:17:23.448Z",
+      "publishedAt": "2026-08-24T17:53:26.111Z",
       "operatorEgress": true,
-      "signature": "d0PkHKB+7JI7uuPGjfYSMpPcUNq3s79/96qK82HuW/DVc1D2ce0GcYvbvagmxaE5vH6LyvsNcXDHJxhatQnfBQ=="
+      "signature": "dt++skNM3hrtlpramyhjX8aEG9tclGpRh9q54EMgrHNRag8W5YkfH/FdOzPISne1iDC+3IPIEawovi3jvSsQAg=="
     },
     {
       "version": "1.0.0",
