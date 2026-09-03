@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T17:17:19.706Z",
+  "generatedAt": "2026-09-03T18:23:17.937Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -975,6 +975,19 @@
       "type": "page",
       "versions": [
         {
+          "version": "1.6.0",
+          "gitTag": "v1.6.0",
+          "commitSha": "8b0f9384ee7ef9432448bdd5caf11a5772fe044f",
+          "downloadUrl": "https://github.com/raduwolf12/trip-importer/releases/download/v1.6.0/plugin.zip",
+          "sha256": "7be0e54ccab6e9cd83e5cf5065b3394c25632091ad81819c2e27ce2b9c89406e",
+          "trek": ">=4.1.1 <5.0.0",
+          "size": 563753,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-09-03T17:28:16.567Z",
+          "operatorEgress": true
+        },
+        {
           "version": "1.5.0",
           "gitTag": "v1.5.0",
           "commitSha": "9351d7027e150f09b5d002e8ed15df1d25150ba5",
@@ -1087,10 +1100,10 @@
         }
       ],
       "icon": "PackageOpen",
-      "reviewedAt": "2026-08-30",
+      "reviewedAt": "2026-09-03",
       "boundOwner": "raduwolf12",
       "downloadCount": 502,
-      "screenshotUrl": "https://raw.githubusercontent.com/raduwolf12/trip-importer/9351d7027e150f09b5d002e8ed15df1d25150ba5/docs/screenshot.png"
+      "screenshotUrl": "https://raw.githubusercontent.com/raduwolf12/trip-importer/8b0f9384ee7ef9432448bdd5caf11a5772fe044f/docs/screenshot.png"
     },
     {
       "id": "trip-research",
