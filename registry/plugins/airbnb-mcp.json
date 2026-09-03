@@ -2,10 +2,36 @@
   "id": "airbnb-mcp",
   "name": "Airbnb Stays",
   "author": "John Jahn",
-  "description": "Find somewhere to stay without leaving your trip — search Airbnb for your dates, compare prices and ratings, and add the winner to the plan in one tap.",
+  "description": "Search Airbnb for your dates without leaving your trip. Compare prices and ratings, then add the winner to the plan in one tap.",
   "repo": "jjahn-source/trek-plugin-airbnb-mcp",
   "type": "trip-page",
   "versions": [
+    {
+      "version": "2.0.3",
+      "gitTag": "v2.0.3",
+      "commitSha": "828459efbe90647b827be7289ecee2daf1daecf8",
+      "downloadUrl": "https://github.com/jjahn-source/trek-plugin-airbnb-mcp/releases/download/v2.0.3/plugin.zip",
+      "sha256": "4ccd2119cddc10aa1e6261ed0873566ce118b01c00610359a4a7bab8cdf569d2",
+      "trek": ">=4.0.0 <5.0.0",
+      "size": 81430,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-09-03T16:56:46.724Z",
+      "operatorEgress": true
+    },
+    {
+      "version": "2.0.2",
+      "gitTag": "v2.0.2",
+      "commitSha": "540483958f2cfc558715d604dbb6d4ebe6488376",
+      "downloadUrl": "https://github.com/jjahn-source/trek-plugin-airbnb-mcp/releases/download/v2.0.2/plugin.zip",
+      "sha256": "4d0e452d3cc76892f556a3ae6acae32da8a91e62bb478842cbc11b120c76f551",
+      "trek": ">=4.0.0 <5.0.0",
+      "size": 81420,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-09-03T16:46:34.909Z",
+      "operatorEgress": true
+    },
     {
       "version": "2.0.0",
       "gitTag": "v2.0.0",
