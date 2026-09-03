@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-03T17:12:37.958Z",
+  "generatedAt": "2026-09-03T17:17:19.706Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -586,6 +586,19 @@
       "type": "trip-page",
       "versions": [
         {
+          "version": "1.3.0",
+          "gitTag": "v1.3.0",
+          "commitSha": "920d20b7ca0c41eeb2129a2e3687c96a312c959d",
+          "downloadUrl": "https://github.com/jubnl/trek-plugin-sundial/releases/download/v1.3.0/plugin.zip",
+          "sha256": "5a5e8905ce333d04d768064dfe9250bfa93126718e6927dc2ca98d8eb7717e0e",
+          "trek": ">=4.0.0 <5.0.0",
+          "size": 44671,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-09-03T17:15:54.592Z",
+          "signature": "Z86MAFAVrJBjoMoZM5Ot7xiw06noLxCgPZWcXCa9qReRB4c6qjN4Cmap6d5mUfnJci3Z90yqfPwoDIYr6Hj9DQ=="
+        },
+        {
           "version": "1.2.0",
           "gitTag": "v1.2.0",
           "commitSha": "0d6cc1d637a34f206d7a1645e2c93082c27c2043",
@@ -630,7 +643,7 @@
       "authorPublicKey": "YgFVo9ES55xz9m0/0Thh5sgx/IlVaaU2r0hScEawgiA=",
       "reviewedAt": "2026-09-03",
       "boundOwner": "jubnl",
-      "screenshotUrl": "https://raw.githubusercontent.com/jubnl/trek-plugin-sundial/0d6cc1d637a34f206d7a1645e2c93082c27c2043/docs/screenshot.png"
+      "screenshotUrl": "https://raw.githubusercontent.com/jubnl/trek-plugin-sundial/920d20b7ca0c41eeb2129a2e3687c96a312c959d/docs/screenshot.png"
     },
     {
       "id": "transport-search",
