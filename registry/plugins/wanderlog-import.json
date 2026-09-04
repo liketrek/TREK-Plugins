@@ -9,7 +9,7 @@
     {
       "version": "1.2.0",
       "gitTag": "v1.2.0",
-      "commitSha": "b565be9b4dfa076cf3f3600ad4ec9aec1653ddbf",
+      "commitSha": "3cda67ee5f0131419bcf7f34c30b138d5edb1c4e",
       "downloadUrl": "https://github.com/danl12353231/TREK-Wanderlog-plugin/releases/download/v1.2.0/plugin.zip",
       "sha256": "22d2bb14b4236f84ba1f68bbd28817df55a7d782a66bf46a7a671cf89f1b5dc0",
       "trek": ">=3.4.0 <5.0.0",
