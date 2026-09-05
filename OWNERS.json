@@ -110,6 +110,11 @@
       "boundOwner": "jubnl",
       "repo": "jubnl/trek-plugin-sundial",
       "firstReviewedAt": "2026-09-03"
+    },
+    "wanderlog-import": {
+      "boundOwner": "danl12353231",
+      "repo": "danl12353231/TREK-Wanderlog-plugin",
+      "firstReviewedAt": "2026-09-05"
     }
   }
 }
