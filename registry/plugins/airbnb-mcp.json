@@ -7,6 +7,20 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "2.0.4",
+      "gitTag": "v2.0.4",
+      "commitSha": "f2964e1cffd86843558e440d291f24ddbb535691",
+      "downloadUrl": "https://github.com/jjahn-source/trek-plugin-airbnb-mcp/releases/download/v2.0.4/plugin.zip",
+      "sha256": "c2e6067aad0670d4b02b6ae092876989eeab2b52079304e72f42619fb9056a0b",
+      "trek": ">=4.0.0 <5.0.0",
+      "size": 81891,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-09-08T14:28:00.933Z",
+      "operatorEgress": true,
+      "signature": "xn7+Tk2IGex6jwcdQqfkpCjNCiYkqdSprOejlOT9+7nMvSTwxdl0A4isvI7ym73bEA1QQZ9LB2qnFXV9y9voBQ=="
+    },
+    {
       "version": "2.0.3",
       "gitTag": "v2.0.3",
       "commitSha": "828459efbe90647b827be7289ecee2daf1daecf8",
@@ -17,7 +31,8 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-09-03T16:56:46.724Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "nLa1jtGHRN/tKFOsFhXITDsq8z8dLPdy5IKsTfYTIpK0ZijQL/Sth7Qdn1S2v5OMsGuff0gKntzC/zAwnhWPCQ=="
     },
     {
       "version": "2.0.2",
@@ -30,7 +45,8 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-09-03T16:46:34.909Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "KhBEJkSqGeB6hvnZmbnulBKlLbNvrYSk4gWREwelpmo9ox6VspcDCAqv3Am9hKa/oA2HfIEOu4crQl2l/N2sBw=="
     },
     {
       "version": "2.0.0",
@@ -43,7 +59,8 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-09-02T17:13:25.735Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "vDKIdYYkrIjA/zYnEoZU3LV7Xv4xmg8thIiEMJUYgI3tTjhSoL0UyX7pO0tApeA7iWDblrdKyu1zBOfwjVZDBg=="
     },
     {
       "version": "1.6.1",
@@ -56,7 +73,8 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-08-31T21:56:52.410Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "iQ/k6HR31N5S0ZZph7u6hpswTWakxeWghZzb2+cRC3zqSpuIkVEEN2klIRlDD2VjVdQfR8cbjcw7z/gSscclDA=="
     },
     {
       "version": "1.4.2",
@@ -68,11 +86,13 @@
       "size": 37124,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-08-31T17:43:40.079Z"
+      "publishedAt": "2026-08-31T17:43:40.079Z",
+      "signature": "i3u2uGPLlHzQEqIEPbW4G2StGShSVNvjNf+IPnLxNpS+Og7FIASHDYAIeBLXmL7YrESbEP6RlQUod0Vs1V8vBw=="
     }
   ],
   "icon": "BedDouble",
   "homepage": "https://github.com/jjahn-source/trek-plugin-airbnb-mcp",
   "reviewedAt": "2026-09-03",
-  "boundOwner": "jjahn-source"
+  "boundOwner": "jjahn-source",
+  "authorPublicKey": "FTyD1ozI9RHZrPNyAFUQq/AEipEuv9EoxCr3677sfN4="
 }
