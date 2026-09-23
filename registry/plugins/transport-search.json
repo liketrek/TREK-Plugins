@@ -7,6 +7,20 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "1.8.0",
+      "gitTag": "v1.8.0",
+      "commitSha": "4e883317c00bdf04efc7cf51f120a7d2abf4ddab",
+      "downloadUrl": "https://github.com/raduwolf12/transport-search/releases/download/v1.8.0/plugin.zip",
+      "sha256": "9158632994af86df0835962d9497a36a6f4443199d074b4c055343643336e87a",
+      "trek": ">=4.2.0 <5.0.0",
+      "size": 52604,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-09-23T20:11:36.458Z",
+      "operatorEgress": true,
+      "signature": "GVj1H1zop4pc6fKZ3fjyWQhd2MtdyWzNaSexkYDbax9xAWySdyDtVxGTk2mJ8MU/opSQDr7TIOii6lNTd5W5DA=="
+    },
+    {
       "version": "1.7.3",
       "gitTag": "v1.7.3",
       "commitSha": "cb70c232f66f71f48f9619caa4fec2340cb499a0",
@@ -17,7 +31,8 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-08-24T15:13:19.065Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "EF03ocZT67SDpKER4oadh5kuC5n3vrDbf/6H75h1/zPPz3V9kSJ9sv7bSaqsaOv09gkU2/MxZutmJnuYO3rNAw=="
     },
     {
       "version": "1.7.2",
@@ -30,10 +45,12 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-08-18T15:49:34.211Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "b5IGnnBGVsnzxziLsjeq80ihUxekLx8Z4SDbR68ycZtl8essq2Kx+uBAUi9euptZtTEl02ZErvB9YiDltMBOBA=="
     }
   ],
   "icon": "Search",
   "reviewedAt": "2026-08-24",
-  "boundOwner": "raduwolf12"
+  "boundOwner": "raduwolf12",
+  "authorPublicKey": "uMHwp7oHtdz7DIpkW4H0yZFMuyAxmVajzKh4079jiwA="
 }
