@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-03T22:59:01.422Z",
+  "generatedAt": "2026-10-03T22:59:39.640Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -855,6 +855,34 @@
       "boundOwner": "jubnl",
       "downloadCount": 174,
       "screenshotUrl": "https://raw.githubusercontent.com/jubnl/trek-gotify/203e1599b0c18552ed2605de532ba88f22931406/docs/screenshot.png"
+    },
+    {
+      "id": "trek-timeline",
+      "name": "Trek Timeline",
+      "author": "aangelisc",
+      "description": "See the whole trip on one timeline: drag stays, transport and plans between days, spot gaps and clashes, and edit stay and transport dates in a spreadsheet grid.",
+      "repo": "aangelisc/trek-timeline",
+      "type": "trip-page",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "gitTag": "v0.1.0",
+          "commitSha": "d73d9149d2fbcba46fd522dca211b75780a933e0",
+          "downloadUrl": "https://github.com/aangelisc/trek-timeline/releases/download/v0.1.0/plugin.zip",
+          "sha256": "1fd1e08f4079a4e3d2d810acb4c1b3c871bea75b5d59e90c1defa8a61538aeb1",
+          "trek": ">=4.0.0 <5.0.0",
+          "size": 51844,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-09-27T18:59:33.917Z",
+          "signature": "E1KPfDkSIOuT44mDFXmLezLCzfe369wRzUnk85vK9tvztq4Gjcd0nRDUsxNQrw6zLFfX35pfqJCz1FqC8Yq6CA=="
+        }
+      ],
+      "icon": "Sheet",
+      "authorPublicKey": "3E5NoGUyeqLwKxVOj9JOGHS1LCCnwRm85M0u/cZcxF4=",
+      "reviewedAt": "2026-10-03",
+      "boundOwner": "aangelisc",
+      "screenshotUrl": "https://raw.githubusercontent.com/aangelisc/trek-timeline/d73d9149d2fbcba46fd522dca211b75780a933e0/docs/screenshot.png"
     },
     {
       "id": "trek-vox-plugin",

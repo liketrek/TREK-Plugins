@@ -120,6 +120,11 @@
       "boundOwner": "Thewhitelight",
       "repo": "Thewhitelight/trek-plugin-flight-map",
       "firstReviewedAt": "2026-10-03"
+    },
+    "trek-timeline": {
+      "boundOwner": "aangelisc",
+      "repo": "aangelisc/trek-timeline",
+      "firstReviewedAt": "2026-10-03"
     }
   }
 }
