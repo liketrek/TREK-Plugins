@@ -1,0 +1,32 @@
+{
+  "id": "vanlife",
+  "name": "Vanlife Planner",
+  "author": "EvKoh",
+  "description": "Road trips with a rooftop tent, a campervan or a motorhome: legal nights, sunset-safe arrivals, routes, schedules, amenities, host contacts and night status, as MCP tools.",
+  "repo": "EvkohLand/TrekPluginVanlife",
+  "type": "widget",
+  "versions": [
+    {
+      "version": "0.4.0",
+      "gitTag": "v0.4.0",
+      "commitSha": "d679e96f8ba4043c6e0f8b9483674fc07f28ccb8",
+      "downloadUrl": "https://github.com/EvkohLand/TrekPluginVanlife/releases/download/v0.4.0/plugin.zip",
+      "sha256": "f0fd9f2ae43947692ce3af2302f328ae5a9e24ba918c6c4682f8e07aabef8e1b",
+      "trek": ">=4.0.0 <5.0.0",
+      "size": 160856,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-10-03T22:59:46.963Z"
+    }
+  ],
+  "icon": "Caravan",
+  "homepage": "https://github.com/EvkohLand/TrekPluginVanlife",
+  "tags": [
+    "vanlife",
+    "camping",
+    "rooftop-tent",
+    "campervan",
+    "motorhome",
+    "mcp"
+  ]
+}
