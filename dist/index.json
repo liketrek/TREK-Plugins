@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-03T09:14:46.568Z",
+  "generatedAt": "2026-10-03T22:59:01.422Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -397,6 +397,40 @@
       "boundOwner": "raduwolf12",
       "downloadCount": 926,
       "screenshotUrl": "https://raw.githubusercontent.com/raduwolf12/featured-guides/9e62adfa878d7a50a2646c3c875e3132f269c7ec/docs/screenshot.png"
+    },
+    {
+      "id": "flight-map",
+      "name": "Flight Map",
+      "author": "libery",
+      "description": "A personal world map of flights, airports and flight statistics.",
+      "repo": "Thewhitelight/trek-plugin-flight-map",
+      "type": "page",
+      "versions": [
+        {
+          "version": "1.0.0",
+          "gitTag": "v1.0.0",
+          "commitSha": "a622ac5eeda8b4106460e00a45440c6e905e1669",
+          "downloadUrl": "https://github.com/Thewhitelight/trek-plugin-flight-map/releases/download/v1.0.0/plugin.zip",
+          "sha256": "671b63949b9160966f3aca9972b56ccba9252d33eb79c168f471e66d19a4053b",
+          "trek": ">=4.0.0 <5.0.0",
+          "size": 288059,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-10-01T12:51:24.549Z",
+          "signature": "Ijkeesyi0yxC4cg2GavIPjSE4NTVZ/r4GZTRdvEnLVG4LiZwnI+LACS65baseJg3t+QYIUWw5stxSmbS0PIqCw=="
+        }
+      ],
+      "icon": "Map",
+      "homepage": "https://github.com/Thewhitelight/trek-plugin-flight-map",
+      "tags": [
+        "flights",
+        "map",
+        "statistics"
+      ],
+      "authorPublicKey": "2FFQ7tGo/u61F7Sy8NnsNLeWQuNzDhxTso3xlh/MOnE=",
+      "reviewedAt": "2026-10-03",
+      "boundOwner": "Thewhitelight",
+      "screenshotUrl": "https://raw.githubusercontent.com/Thewhitelight/trek-plugin-flight-map/a622ac5eeda8b4106460e00a45440c6e905e1669/docs/screenshot.png"
     },
     {
       "id": "flight-tracker",

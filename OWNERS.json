@@ -115,6 +115,11 @@
       "boundOwner": "danl12353231",
       "repo": "danl12353231/TREK-Wanderlog-plugin",
       "firstReviewedAt": "2026-09-05"
+    },
+    "flight-map": {
+      "boundOwner": "Thewhitelight",
+      "repo": "Thewhitelight/trek-plugin-flight-map",
+      "firstReviewedAt": "2026-10-03"
     }
   }
 }
