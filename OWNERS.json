@@ -125,6 +125,11 @@
       "boundOwner": "aangelisc",
       "repo": "aangelisc/trek-timeline",
       "firstReviewedAt": "2026-10-03"
+    },
+    "vanlife": {
+      "boundOwner": "EvkohLand",
+      "repo": "EvkohLand/TrekPluginVanlife",
+      "firstReviewedAt": "2026-10-06"
     }
   }
 }
