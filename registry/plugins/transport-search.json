@@ -7,6 +7,20 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "1.8.1",
+      "gitTag": "v1.8.1",
+      "commitSha": "a446a4f93401a52c2fa72cc1b90f560de8aa69ce",
+      "downloadUrl": "https://github.com/raduwolf12/transport-search/releases/download/v1.8.1/plugin.zip",
+      "sha256": "f687ba7b684005440af7964dae3d6003469d4f6442823807fe4921df12fff521",
+      "trek": ">=4.2.0 <6.0.0",
+      "size": 52605,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-10-08T16:40:14.726Z",
+      "operatorEgress": true,
+      "signature": "pLMa2GgKDSPn40gcsI7EPUT9p9mXpg/nM7DK5RI082EGWCGxnqU0G7P64+WmNAis46MgNnXK4UaEdNQy8B/kBA=="
+    },
+    {
       "version": "1.8.0",
       "gitTag": "v1.8.0",
       "commitSha": "4e883317c00bdf04efc7cf51f120a7d2abf4ddab",
