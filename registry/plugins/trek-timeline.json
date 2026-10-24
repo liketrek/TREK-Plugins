@@ -7,6 +7,19 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "0.2.0",
+      "gitTag": "v0.2.0",
+      "commitSha": "5a776fc4cc1cfeb6b407451d08b5d6720c8abb5b",
+      "downloadUrl": "https://github.com/aangelisc/trek-timeline/releases/download/v0.2.0/plugin.zip",
+      "sha256": "ef6e74d1fde09735bcfe37acb3ac760bbb2565c4ccef31ceeb2029e6245c0cfa",
+      "trek": ">=4.0.0 <6.0.0",
+      "size": 52305,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-10-20T23:30:30.561Z",
+      "signature": "VIvuVCRuaTfrhSGrgFnjsFqDikou0/ECILb5zhO7KSEQVO2xnL3XD+3ia7fcajCinJ/2zPJWXyMh1M8a5rTYAw=="
+    },
+    {
       "version": "0.1.1",
       "gitTag": "v0.1.1",
       "commitSha": "cd3df2097cf146365e11988be0d2d2cce1f552c2",
