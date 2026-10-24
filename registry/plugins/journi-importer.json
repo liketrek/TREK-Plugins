@@ -1,0 +1,26 @@
+{
+  "id": "journi-importer",
+  "name": "Journi Importer",
+  "author": "PhyberApex",
+  "description": "Import your Journi journals as TREK journeys: sign in, pick journals, and every moment becomes an entry with its pictures.",
+  "repo": "PhyberApex/journi-importer",
+  "type": "page",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "gitTag": "v1.0.0",
+      "commitSha": "67b9779ca867c3209c9ce7df7cc2ffad3a82d13e",
+      "downloadUrl": "https://github.com/PhyberApex/journi-importer/releases/download/v1.0.0/plugin.zip",
+      "sha256": "cdbfc31feec837b391cc8d045bcda142bf4957d87c5d6c10926ed334b0028d8a",
+      "trek": ">=4.2.0 <6.0.0",
+      "size": 25762,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-10-24T10:14:16.363Z",
+      "requiredAddons": [
+        "journey"
+      ]
+    }
+  ],
+  "icon": "BookOpen"
+}
