@@ -1,0 +1,24 @@
+{
+  "id": "fieldnotes",
+  "name": "Fieldnotes",
+  "author": "Xuyu Wang",
+  "description": "A private Markdown library with explicit trip sharing, live references and frozen travel copies.",
+  "repo": "Tangerineeew/fieldnotes",
+  "type": "page",
+  "versions": [
+    {
+      "version": "0.2.4",
+      "gitTag": "v0.2.4",
+      "commitSha": "a5233055f038cad3ed449b32e546e829a1d1942c",
+      "downloadUrl": "https://github.com/Tangerineeew/fieldnotes/releases/download/v0.2.4/plugin.zip",
+      "sha256": "d372bc64fdbc31438385bf361ba73423e8b9ce3bed32767216c95980120914e7",
+      "trek": ">=4.3.0",
+      "size": 430993,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-10-23T16:21:31.409Z",
+      "operatorEgress": true
+    }
+  ],
+  "icon": "NotebookPen"
+}
