@@ -1,11 +1,30 @@
 {
   "id": "fieldnotes-trip",
   "name": "Trip Fieldnotes",
-  "author": "Xuyu Wang",
-  "description": "Shared trip knowledge: linked Fieldnotes and saved snapshots.",
+  "author": "Tangerineeew",
+  "description": "A notes tab in every trip: read and discuss what you share from Fieldnotes, with bookings as cards. Requires Fieldnotes.",
   "repo": "Tangerineeew/fieldnotes-trip",
   "type": "trip-page",
   "versions": [
+    {
+      "version": "0.3.2",
+      "gitTag": "v0.3.2",
+      "commitSha": "90628d43175bd7f91655c5a432ae9994a07ae2b8",
+      "downloadUrl": "https://github.com/Tangerineeew/fieldnotes-trip/releases/download/v0.3.2/plugin.zip",
+      "sha256": "2a37172c3250d3c0d1e4eaeb71e966064ccda7822d4a9ef926d9e0e135ccd2ea",
+      "trek": ">=4.1.0",
+      "size": 2833727,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-10-31T10:40:22.501Z",
+      "pluginDependencies": [
+        {
+          "id": "fieldnotes",
+          "version": ">=0.3.2"
+        }
+      ],
+      "signature": "KBWX+JaUHkxqVTy7W0WEP5ofOSBOzJGHadsQYq8ZPAyOCLSqZe85cNCFcFu8+3HqagOjdxeS8t2RwLhsXgXLCg=="
+    },
     {
       "version": "0.2.4",
       "gitTag": "v0.2.4",
@@ -22,10 +41,12 @@
           "id": "fieldnotes",
           "version": ">=0.1.0"
         }
-      ]
+      ],
+      "signature": "1OLrspspp8OjkDOTxJyNJ6zbZ1u+2Ea1B0A1qWACHY63qo+tXPE8n6w2Fhn9P1mJyL8R2oFWRrX2TamRqOoCBg=="
     }
   ],
   "icon": "NotebookPen",
   "reviewedAt": "2026-10-25",
-  "boundOwner": "Tangerineeew"
+  "boundOwner": "Tangerineeew",
+  "authorPublicKey": "60+uJ+VDgdpd0llxuUGKbZ3asMH4S+wHGKmO4d+bwfE="
 }
