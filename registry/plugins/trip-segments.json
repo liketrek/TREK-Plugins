@@ -7,6 +7,19 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "1.3.1",
+      "gitTag": "v1.3.1",
+      "commitSha": "130b087bf3f413184371b2b46c89b9f69723abf3",
+      "downloadUrl": "https://github.com/RenzoBeux/TREK-trip-segments/releases/download/v1.3.1/plugin.zip",
+      "sha256": "cbefdf955b82da834c17d240dea1b1f6528d1013414182370dc815c18de28b2e",
+      "trek": ">=4.0.0 <6.0.0",
+      "size": 44031,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-02T09:58:33.255Z",
+      "signature": "qnZuCpjzSaYpdNqMcTrHIfQjRvVywAXCAK+7D79palc1Im3ruw6yiseUUY2vqnqCZnSlc04IieWPwOOQMk8HBg=="
+    },
+    {
       "version": "1.3.0",
       "gitTag": "v1.3.0",
       "commitSha": "997dfed151e21d8c7347fd7296a31009fa8fa449",
@@ -17,7 +30,7 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-08-27T22:25:32.689Z",
-      "signature": "CVZfuenLfo2lvp3xsmPt7WbUe6zFOb4BYtXN2Uj9RuggnM0SH9XXIweugGJkSFubB6BJUGN/55jPllA6QebXBw=="
+      "signature": "XkaAEDxQbUegZmem/ntbdF5RQXwqFRKD0Fors8oE3q4GKnMdT36qmXD1Astm4Q4g/k5ZrsG7K72o+jA00+TxDw=="
     },
     {
       "version": "1.1.0",
@@ -30,7 +43,7 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-07-30T19:20:24.348Z",
-      "signature": "SCJ3YM6TlGoFM8NUq7sgukJYZbyFF+xc5er/8M7FW3ocvwzptEgHolQ3S3K6PjzzG5DQU/KAW/8Oi6WNIWSRDg=="
+      "signature": "JPI2bkP5NE1zhm0HQwX6S6K4c69veed/jmgRxd90R8pY03kYCfb66h2bsfVtlAqfAXSODklj1pRr8A3f1QwICQ=="
     },
     {
       "version": "1.0.0",
@@ -43,7 +56,7 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-07-29T15:46:57.550Z",
-      "signature": "sm1V5GGsO5Ch872z4QCYBoxZCzlFqY23S6dmHoOxGqdcuLV4ZXuWbZ+L0tPWkYO+1lZGhSHaya7h8Qmdi9S0DA=="
+      "signature": "NpHAHV6JZzPh1jltOm+k/3nVnTg/TZrv/UIXakDlSBXC7dZR76QH+hyF6vXHaEN3VPSqruiEJmTy22lm0DohBQ=="
     }
   ],
   "icon": "Route",
@@ -53,7 +66,7 @@
     "itinerary",
     "multi-destination"
   ],
-  "authorPublicKey": "DupqG0Rp0DxlJRRSxAnFpw6I5v/w5iu7fREFh3Ss5hg=",
+  "authorPublicKey": "EkFk+m48MXhjSsculkCdcgWxk2KRWPAbp2hilS7b9Vk=",
   "reviewedAt": "2026-08-28",
   "boundOwner": "RenzoBeux"
 }
