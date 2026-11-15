@@ -1,11 +1,25 @@
 {
   "id": "fieldnotes",
   "name": "Fieldnotes",
-  "author": "Xuyu Wang",
-  "description": "A private Markdown library with explicit trip sharing, live references and frozen travel copies.",
+  "author": "Tangerineeew",
+  "description": "A private Markdown library for your travel know-how: write it once, bring it into every trip. Pairs with Trip Fieldnotes.",
   "repo": "Tangerineeew/fieldnotes",
   "type": "page",
   "versions": [
+    {
+      "version": "0.3.4",
+      "gitTag": "v0.3.4",
+      "commitSha": "6cb705ddeadb1cf09e8000bac5eb61fc720033e1",
+      "downloadUrl": "https://github.com/Tangerineeew/fieldnotes/releases/download/v0.3.4/plugin.zip",
+      "sha256": "c2455cff45a84fc7224720bbee811c9d0dc08bca0a4f0a1df1a138a0a583bf8b",
+      "trek": ">=4.1.0",
+      "size": 2943462,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-13T20:37:52.564Z",
+      "operatorEgress": true,
+      "signature": "j9uuVLl6l3vPPNYzHlNhfI6PWYdASVABhbmDkJaUUv5XNYMlHKGIQvwyOL2ieaQEkXNeq/0z5qBZt7kxzX3XAQ=="
+    },
     {
       "version": "0.2.4",
       "gitTag": "v0.2.4",
@@ -17,10 +31,12 @@
       "apiVersion": 1,
       "nativeModules": false,
       "publishedAt": "2026-10-23T16:21:31.409Z",
-      "operatorEgress": true
+      "operatorEgress": true,
+      "signature": "slgdJvGbuvotSnMEDQuev4MI1ryAc3NJzFJ453onh5c4rHrAyyvrAMsZMnpl6CBlWUCG8fEsuq2JYS4ML+LUCg=="
     }
   ],
   "icon": "NotebookPen",
   "reviewedAt": "2026-10-25",
-  "boundOwner": "Tangerineeew"
+  "boundOwner": "Tangerineeew",
+  "authorPublicKey": "60+uJ+VDgdpd0llxuUGKbZ3asMH4S+wHGKmO4d+bwfE="
 }
