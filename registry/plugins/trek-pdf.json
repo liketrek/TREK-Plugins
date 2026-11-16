@@ -1,0 +1,25 @@
+{
+  "id": "trek-pdf",
+  "name": "Trek PDF",
+  "author": "iscodeminister",
+  "description": "PDF trip report with OpenFreeMap route maps, day-by-day itinerary, accommodation and costs, in your TREK language",
+  "repo": "iscodeminister/trek-plugin-trek-pdf",
+  "type": "trip-page",
+  "versions": [
+    {
+      "version": "1.3.2",
+      "gitTag": "v1.3.2",
+      "commitSha": "0cbc43182aee559991e008114f6ad9598071bdd5",
+      "downloadUrl": "https://github.com/iscodeminister/trek-plugin-trek-pdf/releases/download/v1.3.2/plugin.zip",
+      "sha256": "85184ab8ac24b65251f2ebb68dddd17efef0e75affd3be81afd90ad937cbc95c",
+      "trek": ">=4.0.0 <6.0.0",
+      "size": 15752394,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-10T23:05:53.179Z",
+      "signature": "oiI3YzZQdJc++XKeuSH/DRsiBy3YaZ8LFCQjiocK9AMU0AquMJNp+8gI0wmAl2O4dwnzDtqgMfOvbOhNVoFtBw=="
+    }
+  ],
+  "icon": "FileText",
+  "authorPublicKey": "cHGGbMUgriL8EZz53gX/IQvJSUSpZl/MHoyZfQrts/s="
+}
