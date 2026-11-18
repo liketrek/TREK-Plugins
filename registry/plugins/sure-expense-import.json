@@ -1,0 +1,31 @@
+{
+  "id": "sure-expense-import",
+  "name": "Sure Sync",
+  "author": "Herman Mak",
+  "description": "Match card charges from your self-hosted Sure ledger to trip cost estimates and swap them in with one tap, keeping titles, splits, bookings and receipts intact.",
+  "repo": "hermanmak/trek-plugin-sure-sync",
+  "type": "trip-page",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "gitTag": "v1.0.0",
+      "commitSha": "4d8bf4ac2d5f1361c4eaf315535f81f4229931e6",
+      "downloadUrl": "https://github.com/hermanmak/trek-plugin-sure-sync/releases/download/v1.0.0/plugin.zip",
+      "sha256": "a9acb54ba17269388979426a958468e45f50b8edb5abe9dd168479ffcf79c3a3",
+      "trek": ">=5.1.0 <6.0.0",
+      "size": 52428,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-15T07:42:33.842Z",
+      "operatorEgress": true,
+      "requiredAddons": [
+        "budget"
+      ],
+      "signature": "VoHqg5rAE1ZZzmZhmCHB01UmO/cDFcQxO8bmBqRZzQXkr2YkaimthkpNer+8pk84yhb9ACL2g6MpaqnL1qhwAg=="
+    }
+  ],
+  "icon": "Receipt",
+  "authorPublicKey": "Az4JdBflmmK3yd0DyDOtqyI4xZKhzlY85qsJ1Nq7es8=",
+  "reviewedAt": "2026-11-15",
+  "boundOwner": "hermanmak"
+}
