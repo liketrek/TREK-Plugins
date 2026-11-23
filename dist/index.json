@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-23T11:30:56.379Z",
+  "generatedAt": "2026-11-23T11:31:27.550Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -10,6 +10,20 @@
       "repo": "jjahn-source/trek-plugin-airbnb-mcp",
       "type": "trip-page",
       "versions": [
+        {
+          "version": "2.1.0",
+          "gitTag": "v2.1.0",
+          "commitSha": "259f9ec35a85a60a5ecc9dfa04103d185549cf07",
+          "downloadUrl": "https://github.com/jjahn-source/trek-plugin-airbnb-mcp/releases/download/v2.1.0/plugin.zip",
+          "sha256": "ef693555036bb4e3921e367038465dd4c8be8fac4a71c25a40186c9bd6bf772e",
+          "trek": ">=4.0.0 <6.0.0",
+          "size": 82690,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-11-10T15:28:49.471Z",
+          "operatorEgress": true,
+          "signature": "FskS5v604BSVr3HxF9y99H0TOB2oLRYHy3+TpD71LCd+33PNzg23itg3KeyMOjfZHJ9hXw9wXB0YlNLfl7YdCA=="
+        },
         {
           "version": "2.0.4",
           "gitTag": "v2.0.4",
@@ -96,11 +110,11 @@
       ],
       "icon": "BedDouble",
       "homepage": "https://github.com/jjahn-source/trek-plugin-airbnb-mcp",
-      "reviewedAt": "2026-09-08",
+      "reviewedAt": "2026-11-23",
       "boundOwner": "jjahn-source",
       "authorPublicKey": "FTyD1ozI9RHZrPNyAFUQq/AEipEuv9EoxCr3677sfN4=",
       "downloadCount": 851,
-      "screenshotUrl": "https://raw.githubusercontent.com/jjahn-source/trek-plugin-airbnb-mcp/f2964e1cffd86843558e440d291f24ddbb535691/docs/screenshot.png"
+      "screenshotUrl": "https://raw.githubusercontent.com/jjahn-source/trek-plugin-airbnb-mcp/259f9ec35a85a60a5ecc9dfa04103d185549cf07/docs/screenshot.png"
     },
     {
       "id": "amap-search",
