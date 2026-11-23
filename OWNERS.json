@@ -150,6 +150,11 @@
       "boundOwner": "iscodeminister",
       "repo": "iscodeminister/trek-plugin-trek-pdf",
       "firstReviewedAt": "2026-11-23"
+    },
+    "sure-expense-import": {
+      "boundOwner": "hermanmak",
+      "repo": "hermanmak/trek-plugin-sure-sync",
+      "firstReviewedAt": "2026-11-23"
     }
   }
 }
