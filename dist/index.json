@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-23T11:33:46.214Z",
+  "generatedAt": "2026-11-23T11:35:38.592Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -837,6 +837,38 @@
       "boundOwner": "geracobo",
       "downloadCount": 651,
       "screenshotUrl": "https://raw.githubusercontent.com/geracobo/trek-plugin-reservations/86133d7a61b7b63dc51aafd2aeb85d1257e1df70/docs/screenshot.png"
+    },
+    {
+      "id": "simcardo-connectivity",
+      "name": "Travel eSIM by Simcardo",
+      "author": "Simcardo",
+      "description": "Check mobile data coverage for a dated trip and open matching travel eSIMs from the itinerary.",
+      "repo": "karmazin/simcardo-connectivity",
+      "type": "trip-page",
+      "versions": [
+        {
+          "version": "0.1.0",
+          "gitTag": "v0.1.0",
+          "commitSha": "5f955b0af5124ae1894d313efb08792c6c05dde3",
+          "downloadUrl": "https://github.com/karmazin/simcardo-connectivity/releases/download/v0.1.0/plugin.zip",
+          "sha256": "138dce5df334b9da5bc51f56bacebe4aed0bf4dbab8423ce2f23c22b80facca1",
+          "trek": ">=5.1.4 <5.2.0",
+          "size": 21263,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-11-19T06:17:19.177Z"
+        }
+      ],
+      "icon": "Smartphone",
+      "homepage": "https://simcardo.com/en/travel-esim-mcp",
+      "tags": [
+        "esim",
+        "connectivity",
+        "itinerary"
+      ],
+      "reviewedAt": "2026-11-23",
+      "boundOwner": "karmazin",
+      "screenshotUrl": "https://raw.githubusercontent.com/karmazin/simcardo-connectivity/5f955b0af5124ae1894d313efb08792c6c05dde3/docs/screenshot.png"
     },
     {
       "id": "suica-saver",

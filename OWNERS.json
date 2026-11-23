@@ -155,6 +155,11 @@
       "boundOwner": "hermanmak",
       "repo": "hermanmak/trek-plugin-sure-sync",
       "firstReviewedAt": "2026-11-23"
+    },
+    "simcardo-connectivity": {
+      "boundOwner": "karmazin",
+      "repo": "karmazin/simcardo-connectivity",
+      "firstReviewedAt": "2026-11-23"
     }
   }
 }
