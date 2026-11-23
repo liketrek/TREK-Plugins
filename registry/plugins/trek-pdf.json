@@ -7,6 +7,19 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "1.5.2",
+      "gitTag": "v1.5.2",
+      "commitSha": "47fe593f0c8e2b7ca73957f5fa4c7ace4994bb2c",
+      "downloadUrl": "https://github.com/iscodeminister/trek-plugin-trek-pdf/releases/download/v1.5.2/plugin.zip",
+      "sha256": "5404d0bc32afacfefdafa117d76b60433acbf72d2dc11b529c6b8d9a955c8a20",
+      "trek": ">=4.0.0 <6.0.0",
+      "size": 15780338,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-23T15:40:41.483Z",
+      "signature": "NXoebrP4ZAhh0xLfhXCVXvNLASrTJbEvtiUX4WfBsXrFZzetNAhlXdZtFtCsoTuN4fDNvihqRZvvOm8tWLHKAQ=="
+    },
+    {
       "version": "1.4.0",
       "gitTag": "v1.4.0",
       "commitSha": "d8ffbad16266583c2358c46c19752e246dcc619c",
