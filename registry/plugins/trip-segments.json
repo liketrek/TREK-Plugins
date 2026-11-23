@@ -7,6 +7,19 @@
   "type": "trip-page",
   "versions": [
     {
+      "version": "1.4.0",
+      "gitTag": "v1.4.0",
+      "commitSha": "6625a022de40dedfb4f793936e61c76b9ed7b74f",
+      "downloadUrl": "https://github.com/RenzoBeux/TREK-trip-segments/releases/download/v1.4.0/plugin.zip",
+      "sha256": "c7a3be67cd055ea8e3cde1df78d7e33da00993eed4979740a9c4d0676881f246",
+      "trek": ">=4.1.0 <6.0.0",
+      "size": 45682,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-23T12:26:10.680Z",
+      "signature": "Y5Fbb2fqnJwcH6yd5Nttsw1fO8ARbA1jbsM/H4Sxi/Z8JzfrXIRy8AF8BgPRanh3vI/Hi2HPlrrHNc9WnjpABw=="
+    },
+    {
       "version": "1.3.1",
       "gitTag": "v1.3.1",
       "commitSha": "130b087bf3f413184371b2b46c89b9f69723abf3",
