@@ -1,0 +1,26 @@
+{
+  "id": "visa-manager",
+  "name": "Passports & Visas",
+  "author": "Luffy",
+  "description": "Manage passports, visas, visa applications and border crossings, with optional Hong Kong and Macao permit, endorsement and port tracking. / 管理护照、签证、签证申请和出入境记录，并可选启用港澳通行证、签注及口岸管理。",
+  "repo": "sy-records/trek-plugin-visa-manager",
+  "type": "page",
+  "versions": [
+    {
+      "version": "1.0.0",
+      "gitTag": "v1.0.0",
+      "commitSha": "834edc5af405fbb0e5c9bb5821decd87fc059f8d",
+      "downloadUrl": "https://github.com/sy-records/trek-plugin-visa-manager/releases/download/v1.0.0/plugin.zip",
+      "sha256": "57bc63e9d75f422a20fa5bdda1dcb79d3b88794427802e90afb08be8701f2134",
+      "trek": ">=5.0.0 <6.0.0",
+      "size": 62899,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-24T06:09:04.321Z",
+      "signature": "YimS6W5/C08O7sBFF3Es2ZSxia3eA05YjG4nlAPx5RlniV0ebsfT9aDk7q69M/23cQ54u28BtHjhXXde7YubBQ=="
+    }
+  ],
+  "icon": "BookUser",
+  "homepage": "https://github.com/sy-records/trek-plugin-visa-manager",
+  "authorPublicKey": "aDa+TpzbEkDSh+eOcY6+//98l3LhnaxGxzJgYuqDGAE="
+}
