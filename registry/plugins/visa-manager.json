@@ -22,5 +22,7 @@
   ],
   "icon": "BookUser",
   "homepage": "https://github.com/sy-records/trek-plugin-visa-manager",
-  "authorPublicKey": "aDa+TpzbEkDSh+eOcY6+//98l3LhnaxGxzJgYuqDGAE="
+  "authorPublicKey": "aDa+TpzbEkDSh+eOcY6+//98l3LhnaxGxzJgYuqDGAE=",
+  "reviewedAt": "2026-11-25",
+  "boundOwner": "sy-records"
 }

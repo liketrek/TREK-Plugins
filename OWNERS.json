@@ -160,6 +160,11 @@
       "boundOwner": "karmazin",
       "repo": "karmazin/simcardo-connectivity",
       "firstReviewedAt": "2026-11-23"
+    },
+    "visa-manager": {
+      "boundOwner": "sy-records",
+      "repo": "sy-records/trek-plugin-visa-manager",
+      "firstReviewedAt": "2026-11-25"
     }
   }
 }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-11-24T13:52:48.336Z",
+  "generatedAt": "2026-11-25T12:32:24.770Z",
   "plugins": [
     {
       "id": "airbnb-mcp",
@@ -1923,6 +1923,35 @@
       "boundOwner": "EvkohLand",
       "downloadCount": 81,
       "screenshotUrl": "https://raw.githubusercontent.com/EvkohLand/TrekPluginVanlife/84cc8d0889e77ce0abe7a354affc2de564bcc7a8/docs/screenshot.png"
+    },
+    {
+      "id": "visa-manager",
+      "name": "Passports & Visas",
+      "author": "Luffy",
+      "description": "Manage passports, visas, visa applications and border crossings, with optional Hong Kong and Macao permit, endorsement and port tracking. 管理护照、签证、签证申请和出入境记录，并可选启用港澳通行证、签注及口岸管理。",
+      "repo": "sy-records/trek-plugin-visa-manager",
+      "type": "page",
+      "versions": [
+        {
+          "version": "1.1.1",
+          "gitTag": "v1.1.1",
+          "commitSha": "2de72f3f30a070e1b22adca0964214d3a10bb94b",
+          "downloadUrl": "https://github.com/sy-records/trek-plugin-visa-manager/releases/download/v1.1.1/plugin.zip",
+          "sha256": "6c2099de89dc15c5c13e51feef96a904b1089342d7962ecfb700a06f6ee5b987",
+          "trek": ">=5.0.0 <6.0.0",
+          "size": 67713,
+          "apiVersion": 1,
+          "nativeModules": false,
+          "publishedAt": "2026-11-25T04:39:09.081Z",
+          "signature": "eaoOK4qppgDV66UlWKkX6tO/dySbSUv9DacR4S252V9fgFdxySnqv5F97JY7uy2lAjEXmbiqNG7obDunSeEMBQ=="
+        }
+      ],
+      "icon": "BookUser",
+      "homepage": "https://github.com/sy-records/trek-plugin-visa-manager",
+      "authorPublicKey": "aDa+TpzbEkDSh+eOcY6+//98l3LhnaxGxzJgYuqDGAE=",
+      "reviewedAt": "2026-11-25",
+      "boundOwner": "sy-records",
+      "screenshotUrl": "https://raw.githubusercontent.com/sy-records/trek-plugin-visa-manager/2de72f3f30a070e1b22adca0964214d3a10bb94b/docs/screenshot.png"
     },
     {
       "id": "wanderlog-import",
