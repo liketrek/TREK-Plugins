@@ -7,6 +7,19 @@
   "type": "page",
   "versions": [
     {
+      "version": "1.0.4",
+      "gitTag": "v1.0.4",
+      "commitSha": "8643522842c5c11c43749a092035e90ec9da14d7",
+      "downloadUrl": "https://github.com/raduwolf12/community-trips/releases/download/v1.0.4/plugin.zip",
+      "sha256": "af69e2af931b50bcf1c7dd9649ab6bcec920183a621dd4ee2e05f2f71242f4a8",
+      "trek": ">=3.4.0 <6.0.0",
+      "size": 89389,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-27T21:55:34.055Z",
+      "signature": "0iSlbZjjClUet+upOvV138s59P0xt87WPVmb/7PhyxFce5Oa0ZdluD2sb0/yfP/ynhn3fAj6jm7iTYuk4UmkAA=="
+    },
+    {
       "version": "1.0.3",
       "gitTag": "v1.0.3",
       "commitSha": "cb775fbf461a3032c063da9e3756f61373311508",
