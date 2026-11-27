@@ -7,6 +7,19 @@
   "type": "page",
   "versions": [
     {
+      "version": "2.0.4",
+      "gitTag": "v2.0.4",
+      "commitSha": "72b70710a893fdb490216251e05d327fdeed58c6",
+      "downloadUrl": "https://github.com/raduwolf12/featured-guides/releases/download/v2.0.4/plugin.zip",
+      "sha256": "55fac028d006e5b92d72938e7db420bf0a52e064475003d556fb38ee69ba3bb6",
+      "trek": ">=3.4.0 <6.0.0",
+      "size": 905375,
+      "apiVersion": 1,
+      "nativeModules": false,
+      "publishedAt": "2026-11-27T22:36:31.529Z",
+      "signature": "1awnHQw7ObzKzQZgy6ThFMhFKd2E0SUZm4ROJGMwSfkyMiLOe8WRMkYMYREzvFJvgSUzyW0LTY0BYcra0RS7Ag=="
+    },
+    {
       "version": "2.0.3",
       "gitTag": "v2.0.3",
       "commitSha": "b5af6f20cda14307a073ec32acbdb06115e02ebc",
@@ -16,7 +29,8 @@
       "size": 904191,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-11-16T13:52:43.937Z"
+      "publishedAt": "2026-11-16T13:52:43.937Z",
+      "signature": "zB5lPKgPeRIbIsTBdaCCZyrBdqfWyNxWWMYno+nZFOKLqOPEDMh4Vs/uSKDCH2u2/QT7Go1J2Hi005fXLglkDg=="
     },
     {
       "version": "2.0.2",
@@ -28,7 +42,8 @@
       "size": 904189,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-08-24T15:02:59.468Z"
+      "publishedAt": "2026-08-24T15:02:59.468Z",
+      "signature": "+RhTiLUaGFiTyPatMpRlIUtiXetHtNwBDY/5V6CQj/Kmp5kv3Kih5Qv+bkk/E4ZGW6rlGtGpJJ/CSh8w6CzRAg=="
     },
     {
       "version": "2.0.1",
@@ -40,7 +55,8 @@
       "size": 904189,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-08-18T15:49:30.666Z"
+      "publishedAt": "2026-08-18T15:49:30.666Z",
+      "signature": "maZBi//cSLGS9umYVGnyj0mEIRztlv1nw+vLUve8FseiB/LUpT4IWFOMDv9siO6LYB/2fjmOwaWqQq3TGlohDQ=="
     },
     {
       "version": "2.0.0",
@@ -52,7 +68,8 @@
       "size": 904187,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-08-16T10:41:28.333Z"
+      "publishedAt": "2026-08-16T10:41:28.333Z",
+      "signature": "3InBtlRY41p6B5Y6E+DmroWTeCcMUug6M80IsZHDAY4qqoCUiOTeL9TQmZIz88i8WEAsDOmwbHKIAU/CAYKvCA=="
     },
     {
       "version": "1.4.0",
@@ -64,7 +81,8 @@
       "size": 571733,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-08-03T21:54:38.827Z"
+      "publishedAt": "2026-08-03T21:54:38.827Z",
+      "signature": "0GDSWxX50Z7t8BId6qiw6iP3sDuF9D2pHCtb+XKxNfplb9Ozmyq9yrsk6FjxamkcakRxSk6KVYlIBBacvLrZAQ=="
     },
     {
       "version": "1.3.0",
@@ -76,7 +94,8 @@
       "size": 563572,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-07-27T19:43:30.799Z"
+      "publishedAt": "2026-07-27T19:43:30.799Z",
+      "signature": "PcQyQI6h0QIxhnHK43/ZtvnftogEKhmKC61yFw5NwhLvvxFHZmA01RKOImxhDtYDj8QdQ0Gq/myONotLt2hGBw=="
     },
     {
       "version": "1.1.0",
@@ -88,10 +107,12 @@
       "size": 557734,
       "apiVersion": 1,
       "nativeModules": false,
-      "publishedAt": "2026-07-22T00:12:07.072Z"
+      "publishedAt": "2026-07-22T00:12:07.072Z",
+      "signature": "APql8WnxQ5QHXwGPZMsqiiNlkwi/35M9pZXvfuHaYErTJpVbXvNJsfdekGF4qQ/GlKzKliTdJd0fcVVlKES8Ag=="
     }
   ],
   "icon": "Compass",
   "reviewedAt": "2026-11-23",
-  "boundOwner": "raduwolf12"
+  "boundOwner": "raduwolf12",
+  "authorPublicKey": "uMHwp7oHtdz7DIpkW4H0yZFMuyAxmVajzKh4079jiwA="
 }
